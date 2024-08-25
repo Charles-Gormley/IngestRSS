@@ -1,0 +1,35 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'CloudFormation template for RSS Feed Processor SQS Queue'
+
+Parameters:
+  SQSQueueName:
+    Type: String
+    Description: ""
+
+Resources:
+  RSSFeedQueue:
+    Type: AWS::SQS::Queue
+    Properties:
+      QueueName: !Ref SQSQueueName
+      VisibilityTimeout: 300
+      RedrivePolicy:
+        deadLetterTargetArn: !GetAtt RSSFeedDLQ.Arn
+        maxReceiveCount: 3
+
+  RSSFeedDLQ:
+    Type: AWS::SQS::Queue
+    Properties:
+      QueueName: !Sub '${AWS::StackName}-rss-feed-dlq'
+
+Outputs:
+  QueueURL:
+    Description: 'URL of the SQS queue for RSS feeds'
+    Value: !Ref RSSFeedQueue
+    Export:
+      Name: !Sub '${AWS::StackName}-RSSFeedQueueURL'
+
+  DLQueueURL:
+    Description: 'URL of the Dead Letter Queue for RSS feeds'
+    Value: !Ref RSSFeedDLQ
+    Export:
+      Name: !Sub '${AWS::StackName}-RSSFeedDLQueueURL'

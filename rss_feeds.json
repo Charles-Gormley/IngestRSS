@@ -1,0 +1,42 @@
+[
+    {
+      "u": "http://rss.cnn.com/rss/cnn_topstories.rss",
+      "dt": 0
+    },
+    {
+      "u": "https://feeds.a.dj.com/rss/RSSWorldNews.xml",
+      "dt": 0
+    },
+    {
+      "u": "http://feeds.bbci.co.uk/news/world/rss.xml",
+      "dt": 0
+    },
+    {
+      "u": "https://feeds.npr.org/1001/rss.xml",
+      "dt": 0
+    },
+    {
+      "u": "https://www.reddit.com/r/news/.rss",
+      "dt": 0
+    },
+    {
+      "u": "https://news.ycombinator.com/rss",
+      "dt": 0
+    },
+    {
+      "u": "https://techcrunch.com/feed/",
+      "dt": 0
+    },
+    {
+      "u": "https://www.wired.com/feed/rss",
+      "dt": 0
+    },
+    {
+      "u": "https://www.sciencedaily.com/rss/all.xml",
+      "dt": 0
+    },
+    {
+      "u": "https://www.nasa.gov/rss/dyn/breaking_news.rss",
+      "dt": 0
+    }
+  ]

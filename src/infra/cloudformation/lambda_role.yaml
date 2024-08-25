@@ -1,0 +1,48 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'IAM Role for RSS Feed Processor Lambda Function with Broad Permissions'
+
+Parameters:
+  LambdaExecutionRoleName:
+    Type: String
+    Description: "Name of the Lambda Execution Role"
+
+Resources:
+  LambdaExecutionRole:
+    Type: 'AWS::IAM::Role'
+    Properties:
+      RoleName: !Ref LambdaExecutionRoleName
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - lambda.amazonaws.com
+            Action:
+              - 'sts:AssumeRole'
+      ManagedPolicyArns:
+        - 'arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole'
+      Policies:
+        - PolicyName: 'RSSFeedProcessorLambdaBroadPolicy'
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action:
+                  - 'sqs:*'
+                  - 'dynamodb:*'
+                  - 's3:*'
+                  - 'lambda:*'
+                  - 'logs:*'
+                  - 'xray:*'
+                  - 'cloudwatch:*'
+                  - 'events:*'
+                  - 'kms:Decrypt'
+                Resource: '*'
+
+Outputs:
+  LambdaRoleArn:
+    Description: 'ARN of the Lambda Execution Role'
+    Value: !GetAtt LambdaExecutionRole.Arn
+    Export:
+      Name: !Sub '${AWS::StackName}-LambdaRoleArn'

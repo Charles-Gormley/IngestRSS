@@ -1,0 +1,26 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'CloudFormation template for RSS Feed Processor S3 Bucket'
+
+Parameters:
+  BucketName:
+    Type: String
+    Description: "Name of the Lambda Execution Role"
+
+Resources:
+  ArticleContentBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Ref BucketName
+      VersioningConfiguration:
+        Status: Enabled
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              SSEAlgorithm: AES256
+
+Outputs:
+  BucketName:
+    Description: 'Name of the S3 bucket for article content'
+    Value: !Ref ArticleContentBucket
+    Export:
+      Name: !Sub '${AWS::StackName}-ArticleContentBucketName'

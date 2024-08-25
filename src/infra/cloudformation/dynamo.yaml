@@ -1,0 +1,27 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'CloudFormation template for RSS Feed Processor DynamoDB Table'
+
+Parameters:
+  DynamoDBName:
+    Type: String
+    Description: ""
+
+Resources:
+  RSSFeedsTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: !Ref 'DynamoDBName'
+      AttributeDefinitions:
+        - AttributeName: url
+          AttributeType: S
+      KeySchema:
+        - AttributeName: url
+          KeyType: HASH
+      BillingMode: PAY_PER_REQUEST
+
+Outputs:
+  TableName:
+    Description: 'Name of the DynamoDB table for RSS feeds'
+    Value: !Ref RSSFeedsTable
+    Export:
+      Name: !Sub '${AWS::StackName}-RSSFeedsTableName'
