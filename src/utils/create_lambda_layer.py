@@ -5,7 +5,7 @@ import shutil
 from botocore.exceptions import ClientError
 
 # Set variables
-LAYER_NAME = "RSSFeedProcessorDependencies"
+LAYER_NAME = os.getenv('S3_LAYER_KEY_NAME')
 BUCKET_NAME = os.getenv("S3_LAYER_BUCKET_NAME")
 REQUIREMENTS_FILE = "src/lambda_function/layers/requirements.txt"
 ZIP_FILE = f"{LAYER_NAME}.zip"
@@ -36,19 +36,27 @@ def create_s3_bucket_if_not_exists(bucket_name, region=None):
         else:
             # For any other errors, re-raise the exception
             raise e
-        
+
+
+
+def install_requirements(requirements_file, target_dir):
+    subprocess.check_call([
+        "pip", "install", 
+        "-r", requirements_file, 
+        "-t", target_dir
+    ])
+
+
+
 def create_lambda_layer():
     # Create a temporary directory for the layer
     os.makedirs("layer/python", exist_ok=True)
 
-    # Install dependencies
-    subprocess.check_call([
-        "pip", "install", 
-        "-r", REQUIREMENTS_FILE, 
-        "-t", "layer/python"
-    ])
-    print("Finished Installing Packages")
+    # Install dependencies from requirements.txt
+    install_requirements(REQUIREMENTS_FILE, "layer/python")
+    print("Finished Installing Packages from requirements.txt")
 
+   
     # Create ZIP file
     shutil.make_archive(LAYER_NAME, 'zip', "layer")
     print("Finished Zipping Package")
@@ -72,7 +80,7 @@ def create_lambda_layer():
             'S3Bucket': BUCKET_NAME,
             'S3Key': ZIP_FILE
         },
-        CompatibleRuntimes=['python3.10', 'python3.11']
+        CompatibleRuntimes=['python3.11']
     )
 
     print(f"Created Lambda layer version: {response['Version']}")

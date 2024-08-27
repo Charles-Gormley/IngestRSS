@@ -36,17 +36,13 @@ def main():
     # Deploy infrastructure
     deploy_infrastructure()
 
-    # Create Lambda layer
-    create_lambda_layer()
-    print("Finished with Lambda Layer")
-
    
     # Deploy Lambda function
     deploy_lambda()
     print("Finished Deploying Lambda")
 
     # Update Lambda environment variables
-    update_env_vars(LAMBDA_FUNCTION_NAME, )
+    update_env_vars(LAMBDA_FUNCTION_NAME)
     print("Finished Environment Variable Updates")
 
     # Upload RSS feeds

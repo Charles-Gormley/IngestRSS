@@ -1,10 +1,13 @@
 AWSTemplateFormatVersion: '2010-09-09'
-Description: 'IAM Role for RSS Feed Processor Lambda Function with Broad Permissions'
+Description: 'IAM Role for RSS Feed Processor Lambda Function with Environment Variable Encryption'
 
 Parameters:
   LambdaExecutionRoleName:
     Type: String
     Description: "Name of the Lambda Execution Role"
+  LambdaKMSKeyArn:
+    Type: String
+    Description: "ARN of the KMS Key for Lambda environment variable encryption"
 
 Resources:
   LambdaExecutionRole:
@@ -23,7 +26,7 @@ Resources:
       ManagedPolicyArns:
         - 'arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole'
       Policies:
-        - PolicyName: 'RSSFeedProcessorLambdaBroadPolicy'
+        - PolicyName: 'RSSFeedProcessorLambdaPolicy'
           PolicyDocument:
             Version: '2012-10-17'
             Statement:
@@ -37,12 +40,21 @@ Resources:
                   - 'xray:*'
                   - 'cloudwatch:*'
                   - 'events:*'
-                  - 'kms:Decrypt'
                 Resource: '*'
+              - Effect: Allow
+                Action:
+                  - 'kms:Decrypt'
+                  - 'kms:GenerateDataKey'
+                Resource: !Ref LambdaKMSKeyArn
 
 Outputs:
   LambdaRoleArn:
     Description: 'ARN of the Lambda Execution Role'
     Value: !GetAtt LambdaExecutionRole.Arn
     Export:
-      Name: !Sub '${AWS::StackName}-LambdaRoleArn'
+       Name: !Sub '${AWS::StackName}-LambdaRoleArn'
+  LambdaKMSKeyArn:
+    Description: 'ARN of the KMS Key for Lambda'
+    Value: !Ref LambdaKMSKeyArn
+    Export:
+      Name: !Sub '${AWS::StackName}-LambdaKMSKeyArn'

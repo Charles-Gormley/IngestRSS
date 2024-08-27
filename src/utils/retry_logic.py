@@ -1,7 +1,7 @@
 import time
 from botocore.exceptions import ClientError
 
-def retry_with_backoff(max_retries=5, initial_backoff=1, backoff_multiplier=2):
+def retry_with_backoff(max_retries=20, initial_backoff=1, backoff_multiplier=4):
     def decorator(func):
         def wrapper(*args, **kwargs):
             retries = 0
@@ -11,6 +11,7 @@ def retry_with_backoff(max_retries=5, initial_backoff=1, backoff_multiplier=2):
                 try:
                     return func(*args, **kwargs)
                 except ClientError as e:
+                    print(e)
                     if e.response['Error']['Code'] in ['ResourceConflictException', 'ResourceInUseException']:
                         if retries == max_retries - 1:
                             raise
