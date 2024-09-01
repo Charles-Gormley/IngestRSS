@@ -1,7 +1,10 @@
 import os
 
 # SQS Configuration
-SQS_QUEUE_URL = os.environ['SQS_QUEUE_URL']
+region = os.getenv["AWS_REGION"]
+account_id = os.getenv["AWS_ACCOUNT_ID"]
+sqs_name = os.getenv["SQS_QUEUE_NAME"]
+
 
 # S3 Configuration
 CONTENT_BUCKET = os.environ['CONTENT_BUCKET']
