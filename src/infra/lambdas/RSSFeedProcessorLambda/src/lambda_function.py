@@ -16,8 +16,9 @@ sqs = boto3.client('sqs')
 
 def lambda_handler(event, context):
     logger.info("Starting RSS feed processing")
+    print("starting rss feed, delete this later.")
     start_time = time.time()
-
+    
     try:
         # Receive message from SQS
         response = sqs.receive_message(
@@ -25,6 +26,7 @@ def lambda_handler(event, context):
             MaxNumberOfMessages=1,
             WaitTimeSeconds=0
         )
+        logger.debug("SQS Response: ", response)
 
         if 'Messages' not in response:
             logger.info("No messages in queue")
@@ -36,6 +38,8 @@ def lambda_handler(event, context):
 
         # Process the feed
         result = process_feed(feed)
+        logger.info("Process Feed Result Dictionary: ", result)
+        last_pub_dt = result['max_date']
 
         if result:
             # Save articles and update feed
@@ -46,9 +50,10 @@ def lambda_handler(event, context):
                     logger.error(f"Failed to save article: {str(e)}")
                     record_extraction_errors(1)
 
-            update_rss_feed(result['feed'])
+            update_rss_feed(result['feed'], last_pub_dt)
 
             # Delete the message from the queue
+            logger.info("Deleting sqs queue message")
             sqs.delete_message(QueueUrl=SQS_QUEUE_URL, ReceiptHandle=receipt_handle)
             logger.info(f"Processed feed: {feed['u']}")
 

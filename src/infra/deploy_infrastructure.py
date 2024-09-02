@@ -2,19 +2,20 @@ import boto3
 import os
 import sys
 import json
+from src.utils.retry_logic import retry_with_backoff
 from botocore.exceptions import ClientError
 
 region_name = os.getenv("AWS_REGION")
 kms_client = boto3.client('kms', region_name=region_name)
+stack_base = os.getenv("STACK_BASE")
 
+@retry_with_backoff()
 def deploy_cloudformation(template_file, stack_suffix, force_recreate=False, parameters=[]):
     cf_client = boto3.client('cloudformation')
-    stack_name = f"rss-feed-processor-{stack_suffix}"
+    stack_name = f"{stack_base}-{stack_suffix}"
     
     with open(f'src/infra/cloudformation/{template_file}', 'r') as file:
         template_body = file.read()
-    
-    print(f"Template contents:\n{template_body}")
     
     capabilities = ['CAPABILITY_NAMED_IAM']
     
@@ -57,11 +58,11 @@ def deploy_cloudformation(template_file, stack_suffix, force_recreate=False, par
             elif 'No updates are to be performed' in str(e):
                 print(f"No updates needed for stack {stack_name}.")
             else:
-                raise
+                raise ClientError
     
     except ClientError as e:
         print(f"Error handling stack {stack_name}: {str(e)}")
-        raise
+        raise ClientError
     
 def get_or_create_kms_key():
     # Create a KMS client
@@ -71,8 +72,6 @@ def get_or_create_kms_key():
     description = 'KMS key for RSS Feed Processor... Oh my god'
     
     account_id = os.getenv('AWS_ACCOUNT_ID')
-
-
     
     try:
         # List all KMS keys
@@ -143,7 +142,7 @@ def deploy_infrastructure():
                           parameters=[
                             {
                                 'ParameterKey': 'BucketName',
-                                'ParameterValue': os.environ.get('S3_BUCKET_NAME', 'default-bucket-name')
+                                'ParameterValue': os.getenv('S3_BUCKET_NAME')
                             }
                         ])
     deploy_cloudformation('dynamo.yaml', 'DynamoDB', 
@@ -172,7 +171,8 @@ def deploy_infrastructure():
                                     }
                                   ])
     
-    # TODO: Figure out KMS Stuff, but for now just do it in the console
+    # TODO: Figure out KMS Stuff, but for now just do it in the console. I would like to get the rest of the cloudformation working 
+    # before I start messing with KMS keys.
 
 if __name__ == "__main__":
     deploy_infrastructure()

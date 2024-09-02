@@ -1,3 +1,4 @@
+# TODO: Delete this... probably? If not move it somewhere elssse. 
 import boto3
 import os
 from botocore.exceptions import ClientError

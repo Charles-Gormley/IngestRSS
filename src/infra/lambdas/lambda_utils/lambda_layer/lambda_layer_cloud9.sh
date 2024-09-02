@@ -1,5 +1,5 @@
 #!/bin/bash
-
+# TODO: This needs to be completely overhauled
 # Update system packages
 echo "Updating system packages..."
 sudo yum update -y

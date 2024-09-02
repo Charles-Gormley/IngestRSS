@@ -1,5 +1,8 @@
 import time
 from botocore.exceptions import ClientError
+import logging
+import os
+logging.basicConfig(level=os.getenv('LOG_LEVEL', 'INFO'))
 
 def retry_with_backoff(max_retries=20, initial_backoff=1, backoff_multiplier=4):
     def decorator(func):
@@ -16,7 +19,7 @@ def retry_with_backoff(max_retries=20, initial_backoff=1, backoff_multiplier=4):
                         if retries == max_retries - 1:
                             raise
                         wait_time = backoff * (2 ** retries)
-                        print(f"Encountered {e.response['Error']['Code']}. Retrying in {wait_time} seconds...")
+                        logging.info(f"Encountered {e.response['Error']['Code']}. Retrying in {wait_time} seconds...")
                         time.sleep(wait_time)
                         retries += 1
                         backoff *= backoff_multiplier

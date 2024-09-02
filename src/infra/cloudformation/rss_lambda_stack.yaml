@@ -1,0 +1,92 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: SQS Filler Lambda Stack
+
+Parameters:
+  QueueFillerLambdaName:
+    Type: String
+    Description: Name of the Lambda function
+  SqsQueueUrl:
+    Type: String
+    Description: URL of the SQS queue
+  DynamoDbTableName:
+    Type: String
+    Description: Name of the DynamoDB table
+  DynamoDbTableArn:
+    Type: String
+    Description: ARN of the DynamoDB table
+  SqsQueueArn:
+    Type: String
+    Description: ARN of the SQS queue
+  LambdaCodeS3Bucket:
+    Type: String
+    Description: S3 bucket containing the Lambda function code
+  LambdaCodeS3Key:
+    Type: String
+    Description: S3 key for the Lambda function code
+  LambdaRuntime:
+    Type: String
+    Description: Lambda runtime
+    Default: python3.12
+  LambdaTimeout:
+    Type: Number
+    Description: Lambda timeout in seconds
+    Default: 300
+
+Resources:
+  SqsFillerFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: !Ref QueueFillerLambdaName
+      Runtime: !Ref LambdaRuntime
+      Handler: lambda_function.handler
+      Code:
+        S3Bucket: !Ref LambdaCodeS3Bucket
+        S3Key: !Ref LambdaCodeS3Key
+      Timeout: !Ref LambdaTimeout
+      Environment:
+        Variables:
+          SQS_QUEUE_URL: !Ref SqsQueueUrl
+          DYNAMODB_TABLE_NAME: !Ref DynamoDbTableName
+      Role: !GetAtt SqsFillerFunctionRole.Arn
+
+  SqsFillerFunctionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+            Action: sts:AssumeRole
+      Policies:
+        - PolicyName: LambdaExecutionPolicy
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action:
+                  - logs:CreateLogGroup
+                  - logs:CreateLogStream
+                  - logs:PutLogEvents
+                Resource: arn:aws:logs:*:*:*
+              - Effect: Allow
+                Action:
+                  - dynamodb:Scan
+                Resource: !Ref DynamoDbTableArn
+              - Effect: Allow
+                Action:
+                  - sqs:SendMessage
+                Resource: !Ref SqsQueueArn
+              - Effect: Allow
+                Action:
+                  - s3:GetObject
+                Resource: !Sub arn:aws:s3:::${LambdaCodeS3Bucket}/${LambdaCodeS3Key}
+
+Outputs:
+  SqsFillerFunctionArn:
+    Description: ARN of the SQS Filler Lambda Function
+    Value: !GetAtt SqsFillerFunction.Arn
+  SqsFillerFunctionRoleArn:
+    Description: ARN of the IAM Role for SQS Filler Lambda Function
+    Value: !GetAtt SqsFillerFunctionRole.Arn

@@ -4,6 +4,7 @@ from dateutil import parser
 import queue
 import threading
 import logging
+from utils import generate_key
 from article_extractor import extract_article
 
 logger = logging.getLogger()
@@ -46,13 +47,17 @@ def extract_feed(rss: dict, output_queue, stop_thread):
             pub_date = parse_pub_date(entry['published'])
             
             if pub_date > last_date:
-                title, text = extract_article(entry.link)
+                title, text = extract_article(entry.link) 
                 article = {
                     'link': entry.link,
                     'rss': feed_url,
                     'title': title,
                     'content': text,
-                    'unixTime': pub_date
+                    'unixTime': pub_date,
+                    'rss_id': generate_key(feed_url),
+                    'article_id': generate_key(entry.link),
+                    'llm_summary': None,
+                    'embedding': None
                 }
                 articles.append(article)
                 max_date = max(max_date, pub_date)

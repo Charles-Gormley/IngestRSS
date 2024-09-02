@@ -10,17 +10,21 @@ import time
 import sys
 from src.infra.deploy_infrastructure import get_or_create_kms_key
 
+import logging
+logging.basicConfig(level=os.getenv('LOG_LEVEL', 'INFO'))
+
 # Set variables
-LAMBDA_NAME = "RSSFeedProcessor"
+# TODO: Set environment variables
+LAMBDA_NAME = os.getenv('LAMBDA_FUNCTION_NAME')
 LAMBDA_HANDLER = "lambda_function.lambda_handler"
 ACCOUNT_NUM = os.getenv('AWS_ACCOUNT_ID')
 LAMBDA_ROLE_NAME = os.getenv('LAMBDA_EXECUTION_ROLE_NAME')
 LAMBDA_ROLE_ARN = f"arn:aws:iam::{ACCOUNT_NUM}:role/{LAMBDA_ROLE_NAME}"
-LAMBDA_TIMEOUT = 300
-LAMBDA_MEMORY = 256
-LAMBDA_RUNTIME = "python3.11"
-LAMBDA_STACK_NAME = "rss-feed-processor-Lambda"
-LAMBDA_LAYER_NAME = "RSSFeedProcessorLayer"
+LAMBDA_TIMEOUT = int(os.getenv('LAMBDA_TIMEOUT'))
+LAMBDA_MEMORY = int(os.getenv('LAMBDA_MEMORY'))
+LAMBDA_RUNTIME = os.getenv('LAMBDA_RUNTIME')
+LAMBDA_STACK_NAME = os.getenv("STACK_BASE") + f"-{LAMBDA_NAME}"
+LAMBDA_LAYER_NAME = LAMBDA_NAME + "Layer"
 S3_LAYER_BUCKET_NAME = os.getenv('S3_LAYER_BUCKET_NAME')
 S3_LAYER_KEY = os.getenv('S3_LAYER_KEY_NAME')+'.zip'
 
@@ -42,36 +46,13 @@ def update_function_code(lambda_client, function_name, zip_file):
         ZipFile=zip_file
     )
 
-@retry_with_backoff()
 def get_or_create_lambda_layer():
-    layer_arn = 'arn:aws:lambda:us-east-1:966265353179:layer:OpenRSSLambdaLayer:3'
+    layer_arn = os.getenv('LAMBDA_LAYER_ARN')
     
     return layer_arn
-    
 
-def wait_for_function_update_to_complete(lambda_client, function_name, max_attempts=30, delay=10):
-    for attempt in range(max_attempts):
-        try:
-            response = lambda_client.get_function(FunctionName=function_name)
-            state = response['Configuration']['State']
-            if state == 'Active':
-                return True
-            elif state == 'Failed':
-                print(f"Function update failed: {response['Configuration'].get('StateReason')}")
-                return False
-            print(f"Function {function_name} is in {state} state. Waiting...")
-        except ClientError as e:
-            print(f"Error checking function state: {e}")
-            return False
-        time.sleep(delay)
-    print(f"Timeout waiting for function {function_name} to become active.")
-    return False
-
-@retry_with_backoff()
+@retry_with_backoff(max_retries=50, initial_backoff=5, backoff_multiplier=2) # Note: This function usually takes a long time to be successful. 
 def update_function_configuration(lambda_client, function_name, handler, role, timeout, memory, layers, kms_key_id):
-    # First, wait for any ongoing updates to complete
-    if not wait_for_function_update_to_complete(lambda_client, function_name):
-        raise Exception(f"Function {function_name} is not in a state to be updated.")
 
     config = {
         'FunctionName': function_name,
@@ -85,43 +66,16 @@ def update_function_configuration(lambda_client, function_name, handler, role, t
     if kms_key_id:
         config['KMSKeyArn'] = f"arn:aws:kms:{os.environ['AWS_REGION']}:{ACCOUNT_NUM}:key/{kms_key_id}"
     
-    print(f"Updating function configuration for {function_name}... with {config}")
-    
-    max_retries = 5 # TODO: Get rid of this dumb retry logic and just use the wrapper I created.
-    for attempt in range(max_retries):
+
         try:
             response = lambda_client.update_function_configuration(**config)
             print(f"Update request sent successfully for {function_name}.")
             
-            # Wait for the update to complete
-            if wait_for_function_update_to_complete(lambda_client, function_name):
-                print(f"Function {function_name} updated successfully.")
-                return response
-            else:
-                print(f"Function {function_name} update may not have completed successfully.")
-                if attempt < max_retries - 1:
-                    print(f"Retrying in 30 seconds... (Attempt {attempt + 1}/{max_retries})")
-                    time.sleep(30)
-                else:
-                    raise Exception(f"Failed to update function {function_name} after {max_retries} attempts.")
         except ClientError as e:
             if e.response['Error']['Code'] == 'ResourceConflictException':
-                if attempt < max_retries - 1:
-                    print(f"Another operation is in progress for {function_name}. Retrying in 30 seconds... (Attempt {attempt + 1}/{max_retries})")
-                    time.sleep(30)
-                else:
-                    raise Exception(f"Failed to update function {function_name} after {max_retries} attempts due to ongoing operations.")
-            elif 'The role defined for the function cannot be assumed by Lambda' in str(e):
-                if attempt < max_retries - 1:
-                    print(f"IAM role not ready. Retrying in 30 seconds... (Attempt {attempt + 1}/{max_retries})")
-                    time.sleep(30)
-                else:
-                    raise Exception(f"Failed to update function {function_name} after {max_retries} attempts. IAM role could not be assumed by Lambda.")
-            else:
-                print(f"Error updating function configuration: {e}")
-                raise
-    
-    raise Exception(f"Failed to update function {function_name} after {max_retries} attempts.")
+                logging.info(f"Function {function_name} is currently being updated. Retrying...")
+                raise e
+
 
 @retry_with_backoff()
 def create_function(lambda_client, function_name, runtime, role, handler, zip_file, timeout, memory, layers, kms_key_id):
@@ -163,7 +117,7 @@ def deploy_lambda():
     lambda_client = boto3.client('lambda')
 
     print(f"Starting deployment of Lambda function: {LAMBDA_NAME}")
-    deployment_package = zip_directory('src/lambda_function/src')
+    deployment_package = zip_directory('src/infra/lambdas/RSSFeedProcessorLambda/src')
 
     layer_arn = get_or_create_lambda_layer()
     if layer_arn:
