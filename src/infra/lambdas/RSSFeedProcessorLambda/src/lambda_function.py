@@ -7,34 +7,33 @@ from config import SQS_QUEUE_URL
 from exceptions import RSSProcessingError, ArticleExtractionError, DataStorageError
 from metrics import record_processed_articles, record_processing_time, record_extraction_errors
 import boto3
+import os
 
 # Set up logging
 logger = setup_logging()
+
+storage_strategy = os.environ.get('STORAGE_STRATEGY')
 
 # Initialize AWS clients
 sqs = boto3.client('sqs')
 
 def lambda_handler(event, context):
     logger.info("Starting RSS feed processing")
-    print("starting rss feed, delete this later.")
     start_time = time.time()
+    
+    
     
     try:
         # Receive message from SQS
-        response = sqs.receive_message(
-            QueueUrl=SQS_QUEUE_URL,
-            MaxNumberOfMessages=1,
-            WaitTimeSeconds=0
-        )
-        logger.debug("SQS Response: ", response)
-
-        if 'Messages' not in response:
-            logger.info("No messages in queue")
-            return {'statusCode': 200, 'body': json.dumps('No RSS feeds to process')}
-
-        message = response['Messages'][0]
-        receipt_handle = message['ReceiptHandle']
-        feed = json.loads(message['Body'])
+        event_source = event["Records"][0]["eventSource"]
+        if event_source == "aws:sqs":
+            feed = event["Records"][0]["body"]
+            logger.info(f"Received message from SQS: {feed}")
+            feed = json.loads(feed)
+            
+            
+        
+        receipt_handle = event["Records"][0]['receiptHandle']
 
         # Process the feed
         result = process_feed(feed)
@@ -45,7 +44,7 @@ def lambda_handler(event, context):
             # Save articles and update feed
             for article in result['articles']:
                 try:
-                    save_article(article)
+                    save_article(article, storage_strategy)
                 except DataStorageError as e:
                     logger.error(f"Failed to save article: {str(e)}")
                     record_extraction_errors(1)
@@ -54,7 +53,11 @@ def lambda_handler(event, context):
 
             # Delete the message from the queue
             logger.info("Deleting sqs queue message")
-            sqs.delete_message(QueueUrl=SQS_QUEUE_URL, ReceiptHandle=receipt_handle)
+            try: 
+                sqs.delete_message(QueueUrl=SQS_QUEUE_URL, ReceiptHandle=receipt_handle)
+            except Exception as e:
+                logger.error(f"Error deleting message from SQS: {str(e)}")
+                logger.info("We can skip this but delete this block of code if it fails. This means the queue is already deleted when it triggers.")
             logger.info(f"Processed feed: {feed['u']}")
 
             # Record metrics

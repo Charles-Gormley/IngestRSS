@@ -13,7 +13,8 @@ def update_env_vars(function_name):
         'SQS_QUEUE_URL': os.environ.get('SQS_QUEUE_URL'),
         'CONTENT_BUCKET': os.environ.get('S3_BUCKET_NAME'),
         'DYNAMODB_TABLE': os.environ.get('DYNAMODB_TABLE_NAME'),
-        'LOG_LEVEL': os.environ.get('LOG_LEVEL', 'INFO')
+        'LOG_LEVEL': os.environ.get('LOG_LEVEL', 'INFO'),
+        'STORAGE_STRATEGY': os.environ.get('STORAGE_STRATEGY')
     }
     
     return lambda_client.update_function_configuration(

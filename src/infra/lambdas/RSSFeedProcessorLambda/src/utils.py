@@ -4,7 +4,7 @@ import hashlib
 
 def setup_logging():
     logger = logging.getLogger()
-    log_level = "DEBUG"
+    log_level = os.environ.get('LOG_LEVEL', 'INFO')
     logger.setLevel(logging.getLevelName(log_level))
     return logger
 

@@ -69,6 +69,7 @@ def extract_feed(rss: dict, output_queue, stop_thread):
         }
         output_queue.put(output)
     except Exception as e:
+        logger.error(f"Feed: {entry}")
         logger.error(f"Feed failed due to error: {e}")
 
 def parse_pub_date(date_string):

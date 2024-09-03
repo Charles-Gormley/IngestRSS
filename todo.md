@@ -1,3 +1,6 @@
+# TODO: Fix nonetype error. 
+# TODO: Try to fix forbiden url issue.
+
 
 # TODO: Add in console setup python script for new project into launch.py
 # TODO: Eventbridge set up ( make sure this works ) 
@@ -14,6 +17,12 @@
 * Duplicate Article Check Module.
 * Semantic Storage Module
 * API Module ( Semantic Search, Retrieval )
+
+# Future Use Cases
+* Betting Market Prediction
+* Financial Market Predicitions
+* News Aggregation
+* News Letter Tooling
 
 # Over-caffeineted Ideas
 * Make it solarpunk themed.
