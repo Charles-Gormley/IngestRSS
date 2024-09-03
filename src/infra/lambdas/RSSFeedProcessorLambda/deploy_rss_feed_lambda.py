@@ -14,18 +14,18 @@ import logging
 logging.basicConfig(level=os.getenv('LOG_LEVEL', 'INFO'))
 
 # Set variables
-# TODO: Set environment variables
+
 LAMBDA_NAME = os.getenv('LAMBDA_FUNCTION_NAME')
-LAMBDA_HANDLER = "lambda_function.lambda_handler"
+
 ACCOUNT_NUM = os.getenv('AWS_ACCOUNT_ID')
-LAMBDA_ROLE_NAME = os.getenv('LAMBDA_EXECUTION_ROLE_NAME')
-LAMBDA_ROLE_ARN = f"arn:aws:iam::{ACCOUNT_NUM}:role/{LAMBDA_ROLE_NAME}"
+LAMBDA_ROLE_ARN = os.getenv("LAMBDA_ROLE_ARN")
 LAMBDA_TIMEOUT = int(os.getenv('LAMBDA_TIMEOUT'))
 LAMBDA_MEMORY = int(os.getenv('LAMBDA_MEMORY'))
 LAMBDA_RUNTIME = os.getenv('LAMBDA_RUNTIME')
-LAMBDA_STACK_NAME = os.getenv("STACK_BASE") + f"-{LAMBDA_NAME}"
-LAMBDA_LAYER_NAME = LAMBDA_NAME + "Layer"
 S3_LAYER_BUCKET_NAME = os.getenv('S3_LAYER_BUCKET_NAME')
+LAMBDA_STACK_NAME = os.getenv("STACK_BASE") + f"-{LAMBDA_NAME}"
+LAMBDA_HANDLER = "lambda_function.lambda_handler"
+LAMBDA_LAYER_NAME = LAMBDA_NAME + "Layer"
 S3_LAYER_KEY = os.getenv('S3_LAYER_KEY_NAME')+'.zip'
 
 def zip_directory(path):

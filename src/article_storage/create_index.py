@@ -8,7 +8,7 @@ load_dotenv()
 
 region = os.getenv("AWS_REGION")
 index_name = os.getenv("PINECONE_DB_NAME")
-index_name = "quickstart" # TODO: Remove this line after we are done testing with vector dbs.
+index_name = "quickstart" # TODO: Remove this line after we are done testing with vector dbs. 
 
 if index_name not in pc.list_indexes().names():
     pc.create_index(

@@ -1,18 +1,23 @@
 import os
 import zipfile
+import logging
 import boto3
 from dotenv import load_dotenv
-from deploy_infrastructure import deploy_cloudformation
+from src.infra.deploy_infrastructure import deploy_cloudformation
 
 # Load environment variables
 load_dotenv()
+
+# Set up logging
+
+logging.basicConfig(level=os.getenv('LOG_LEVEL'))
 
 
 # Set up S3 client
 s3 = boto3.client('s3')
 
 def zip_lambda_code():
-    lambda_dir = 'src/infra/RSSQueueFillerLambda/lambda'
+    lambda_dir = 'src/infra/lambdas/RSSQueueFiller/lambda'
     zip_path = 'tmp/lambda_function.zip'
     
     with zipfile.ZipFile(zip_path, 'w', zipfile.ZIP_DEFLATED) as zipf:
@@ -27,7 +32,6 @@ def zip_lambda_code():
 def upload_to_s3(file_path):
     s3_key = os.getenv('QUEUE_FILLER_LAMBDA_S3_KEY')
     bucket_name = os.getenv('S3_LAYER_BUCKET_NAME')
-
     s3.upload_file(file_path, bucket_name, s3_key)
     return f's3://{bucket_name}/{s3_key}'
 

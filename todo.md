@@ -1,9 +1,12 @@
-# TODO: Clean up aws cdk stuff. 
-# TODO: Reorganize infra folder structure.
+
 # TODO: Add in console setup python script for new project into launch.py
+# TODO: Eventbridge set up ( make sure this works ) 
+# TODO: Automate eventbridge.
+# TODO: Make sure ingestion of articles actually works
 
 # Modules
 * More RSS Feed Module
+* Update Lambda Layer Creation Script to be comprehensive.
 
 # Future Modules
 * Gen AI Summarization Module

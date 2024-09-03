@@ -4,6 +4,7 @@ import json
 import boto3
 from dotenv import load_dotenv
 import logging
+from src.infra.lambdas.RSSQueueFiller.deploy_sqs_filler_lambda import deploy_sqs_filler
 # Load environment variables
 load_dotenv()
 
@@ -36,17 +37,29 @@ from src.feed_management.upload_rss_feeds import upload_rss_feeds
 
 def main():
     # Deploy infrastructure
-    # deploy_infrastructure() # TODO: Add in sqs lambda filler here.
-    # logging.info("Finished Deploying Infrastructure")
+    deploy_infrastructure() 
+    logging.info("Finished Deploying Infrastructure")
 
    
     # Deploy Lambda function
     deploy_lambda()
-    print("Finished Deploying Lambda")
+    logging.info("Finished Deploying Lambda")
+
+    deploy_sqs_filler()
+    logging.info("Finished Deploying SQS Filler Lambda")
+
+
 
     # Update Lambda environment variables
     update_env_vars(LAMBDA_FUNCTION_NAME)
     print("Finished Environment Variable Updates")
+
+    
+
+    # TODO: Add in an eventbridge timer to trigger the lambda.
+
+    # TODO: Add in a 2x check to make sure the queue trigger and the eb trigger are enabled. 
+    
 
     # Upload RSS feeds
     rss_feeds_file = os.path.join(current_dir, "rss_feeds.json")

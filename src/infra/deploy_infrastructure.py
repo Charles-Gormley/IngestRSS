@@ -5,6 +5,9 @@ import json
 from src.utils.retry_logic import retry_with_backoff
 from botocore.exceptions import ClientError
 
+from dotenv import load_dotenv
+load_dotenv()
+
 region_name = os.getenv("AWS_REGION")
 kms_client = boto3.client('kms', region_name=region_name)
 stack_base = os.getenv("STACK_BASE")
@@ -13,6 +16,7 @@ stack_base = os.getenv("STACK_BASE")
 def deploy_cloudformation(template_file, stack_suffix, force_recreate=False, parameters=[]):
     cf_client = boto3.client('cloudformation')
     stack_name = f"{stack_base}-{stack_suffix}"
+    print(stack_name)
     
     with open(f'src/infra/cloudformation/{template_file}', 'r') as file:
         template_body = file.read()
@@ -58,11 +62,11 @@ def deploy_cloudformation(template_file, stack_suffix, force_recreate=False, par
             elif 'No updates are to be performed' in str(e):
                 print(f"No updates needed for stack {stack_name}.")
             else:
-                raise ClientError
+                raise 
     
     except ClientError as e:
         print(f"Error handling stack {stack_name}: {str(e)}")
-        raise ClientError
+        raise 
     
 def get_or_create_kms_key():
     # Create a KMS client
@@ -160,7 +164,7 @@ def deploy_infrastructure():
                             }
                         ])
     deploy_cloudformation('lambda_role.yaml', 'Lambda', force_recreate=True,
-                                  parameters=[
+                                parameters=[
                                     {
                                         'ParameterKey': 'LambdaExecutionRoleName',
                                         'ParameterValue': os.environ.get('LAMBDA_EXECUTION_ROLE_NAME', 'default-role-name')
@@ -169,7 +173,8 @@ def deploy_infrastructure():
                                         'ParameterKey': 'LambdaKMSKeyArn',
                                         'ParameterValue': kms_key_arn
                                     }
-                                  ])
+                                ]
+                        )
     
     # TODO: Figure out KMS Stuff, but for now just do it in the console. I would like to get the rest of the cloudformation working 
     # before I start messing with KMS keys.
