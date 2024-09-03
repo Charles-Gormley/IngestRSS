@@ -1,0 +1,21 @@
+{
+    "Records": [
+        {
+        "messageId": "3214ab69-abb0-40c0-9065-2614c8da45b5",
+        "receiptHandle": "AQEBweJAoLGD9NDhm/bPl+LVdWp262pEnpVop1R+e8k//NeQ4T14AQsv2WTq/iwQt0/3bh5KGrBaqZHNwiUUXkd0b40NEO4lt/YWbZrSTVxdC1wcdYO8v2w5imd+rQ/+J6AlEXHHhnyqKkutwEKCA0QiMt6TfYON0sxZy83JRZmIWX6uE9zmejS92EYAwvMKGwKf45ASgiP4cwOptka4dj6NhAOP/cC8ygt7cvZtpyC7WcwBAak/XuAI1JeObUtOXKSdglUo4o46uGiNIiwwnXkuuw0A0sYcCxPFIO/8GpgWHmCQdgsPYFsZBjFNf0/pdldplOJhjjzxqdadEEqlKoxEtvmouS5SQURubUxP3X/tq3+Waljqmf1Hre97ASNG4+6pYbMyXP/uuv+NMSnoJujiuA==",
+        "body": "{"u": "https://www.sciencedaily.com/rss/all.xml", "dt": 0}",
+        "attributes": {
+            "ApproximateReceiveCount": "1",
+            "AWSTraceHeader": "Root=1-66d7944f-3d6dc8822638689228df26cf;Parent=3e6b55a229989a9a;Sampled=0;Lineage=11d5b652:0",
+            "SentTimestamp": "1725404240031",
+            "SenderId": "AROA6B6PHGPNYVX6EREKP:RSSQueueFiller",
+            "ApproximateFirstReceiveTimestamp": "1725404240032"
+            },
+        "messageAttributes": {},
+        "md5OfBody": "5cc09387bc0d19c9bfead740d1aba6cf",
+        "eventSource": "aws:sqs",
+        "eventSourceARN": "arn:aws:sqs:us-east-1:966265353179:rss-feed-queue",
+        "awsRegion": "us-east-1"
+        }
+    ]
+}
