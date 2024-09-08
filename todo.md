@@ -1,10 +1,6 @@
 # Current Sub-Modules
-* TODO:  Make sure SQS queue can't go over the concurrency limit of the account. 
-* TODO: Automate eventbridge.
-* TODO: Eventbridge set up ( make sure this works ) 
 * TODO More RSS Feed Module
 * TODO: Add in console setup python script for new project into launch.py
-
 
 # Modules
 * Update Lambda Layer Creation Script to be more comprehensive.
