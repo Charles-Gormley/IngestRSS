@@ -16,7 +16,7 @@ stack_base = os.getenv("STACK_BASE")
 def deploy_cloudformation(template_file, stack_suffix, force_recreate=False, parameters=[]):
     cf_client = boto3.client('cloudformation')
     stack_name = f"{stack_base}-{stack_suffix}"
-    print(stack_name)
+
     
     with open(f'src/infra/cloudformation/{template_file}', 'r') as file:
         template_body = file.read()
@@ -141,14 +141,7 @@ def deploy_infrastructure():
     
     key_info = kms_client.describe_key(KeyId=kms_key_id)
     kms_key_arn = key_info['KeyMetadata']['Arn']
-    
-    deploy_cloudformation('s3.yaml', 'S3',
-                          parameters=[
-                            {
-                                'ParameterKey': 'BucketName',
-                                'ParameterValue': os.getenv('S3_BUCKET_NAME')
-                            }
-                        ])
+
     deploy_cloudformation('dynamo.yaml', 'DynamoDB', 
                           parameters=[
                             {
@@ -156,6 +149,16 @@ def deploy_infrastructure():
                                 'ParameterValue': os.environ.get('DYNAMODB_TABLE_NAME', 'default-table-name')
                             }
                         ])
+    
+
+    deploy_cloudformation('s3.yaml', 'S3',
+                        parameters=[
+                            {
+                                'ParameterKey': 'BucketName',
+                                'ParameterValue': os.getenv('S3_BUCKET_NAME')
+                            }
+                        ])
+    
     deploy_cloudformation('sqs.yaml', 'SQS',
                           parameters=[
                             {

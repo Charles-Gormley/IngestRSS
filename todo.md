@@ -2,11 +2,14 @@
 * Test Creation
 * Add in console setup python script for new project into launch.py
 * Better Readme.md
-* Change name
+* Update Lambda Layer Creation Script to be more comprehensive. 
+** Make a layer for every region in existance. 
+** Save this script. 
+** Update the layer references with os.getenv("AWS_REGION")
 
 # Misc TODO:
 * More RSS Feed Module - Easy
-* Update Lambda Layer Creation Script to be more comprehensive.
+
 
 
 # Next Modules

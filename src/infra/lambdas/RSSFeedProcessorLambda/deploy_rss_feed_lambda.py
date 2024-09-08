@@ -118,7 +118,7 @@ def create_function(lambda_client, function_name, runtime, role, handler, zip_fi
     return lambda_client.create_function(**config)
 
 def get_pillow_layer_arn():
-    url = "https://api.klayers.cloud/api/v2/p3.11/layers/latest/us-east-1/json"
+    url = f"https://api.klayers.cloud/api/v2/p3.11/layers/latest/{os.getenv('AWS_REGION')}/json"
     try:
         response = requests.get(url)
         response.raise_for_status()
