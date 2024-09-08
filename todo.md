@@ -1,15 +1,13 @@
-# TODO: Fix nonetype error. 
-# TODO: Try to fix forbiden url issue.
+# Current Sub-Modules
+* TODO:  Make sure SQS queue can't go over the concurrency limit of the account. 
+* TODO: Automate eventbridge.
+* TODO: Eventbridge set up ( make sure this works ) 
+* TODO More RSS Feed Module
+* TODO: Add in console setup python script for new project into launch.py
 
-
-# TODO: Add in console setup python script for new project into launch.py
-# TODO: Eventbridge set up ( make sure this works ) 
-# TODO: Automate eventbridge.
-# TODO: Make sure ingestion of articles actually works
 
 # Modules
-* More RSS Feed Module
-* Update Lambda Layer Creation Script to be comprehensive.
+* Update Lambda Layer Creation Script to be more comprehensive.
 
 # Future Modules
 * Gen AI Summarization Module
@@ -17,6 +15,7 @@
 * Duplicate Article Check Module.
 * Semantic Storage Module
 * API Module ( Semantic Search, Retrieval )
+* Architecture Diagram
 
 # Future Use Cases
 * Betting Market Prediction
@@ -24,6 +23,6 @@
 * News Aggregation
 * News Letter Tooling
 
-# Over-caffeineted Ideas
+# Over-caffeineted Ideas ☕
 * Make it solarpunk themed.
 * Write a serverless manifesto for personal projects and where you would like to see the serverless world go.

@@ -8,6 +8,7 @@ from exceptions import RSSProcessingError, ArticleExtractionError, DataStorageEr
 from metrics import record_processed_articles, record_processing_time, record_extraction_errors
 import boto3
 import os
+from feed_processor import extract_feed
 
 # Set up logging
 logger = setup_logging()
@@ -20,8 +21,6 @@ sqs = boto3.client('sqs')
 def lambda_handler(event, context):
     logger.info("Starting RSS feed processing")
     start_time = time.time()
-    
-    
     
     try:
         # Receive message from SQS
@@ -36,7 +35,8 @@ def lambda_handler(event, context):
         receipt_handle = event["Records"][0]['receiptHandle']
 
         # Process the feed
-        result = process_feed(feed)
+        result = extract_feed(feed)
+        print(type(result))
         logger.info("Process Feed Result Dictionary: ", result)
         last_pub_dt = result['max_date']
 

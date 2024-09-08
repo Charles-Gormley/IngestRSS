@@ -11,8 +11,8 @@ def update_env_vars(function_name):
 
     env_vars = {
         'SQS_QUEUE_URL': os.environ.get('SQS_QUEUE_URL'),
-        'CONTENT_BUCKET': os.environ.get('S3_BUCKET_NAME'),
-        'DYNAMODB_TABLE': os.environ.get('DYNAMODB_TABLE_NAME'),
+        'S3_BUCKET_NAME': os.environ.get('S3_BUCKET_NAME'),
+        'DYNAMODB_TABLE_NAME': os.environ.get('DYNAMODB_TABLE_NAME'),
         'LOG_LEVEL': os.environ.get('LOG_LEVEL', 'INFO'),
         'STORAGE_STRATEGY': os.environ.get('STORAGE_STRATEGY')
     }

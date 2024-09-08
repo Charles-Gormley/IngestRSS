@@ -3,11 +3,6 @@ import os
 # SQS Configuration
 SQS_QUEUE_URL = os.environ['SQS_QUEUE_URL']
 
-# S3 Configuration
-CONTENT_BUCKET = os.environ['CONTENT_BUCKET']
-
-# DynamoDB Configuration
-DYNAMODB_TABLE = os.environ['DYNAMODB_TABLE']
 
 # Logging Configuration
 LOG_LEVEL = os.environ.get('LOG_LEVEL', 'INFO')
