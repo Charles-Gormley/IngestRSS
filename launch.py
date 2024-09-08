@@ -48,17 +48,9 @@ def main():
     deploy_sqs_filler()
     logging.info("Finished Deploying SQS Filler Lambda")
 
-
-
     # Update Lambda environment variables
     update_env_vars(LAMBDA_FUNCTION_NAME)
     print("Finished Environment Variable Updates")
-
-    
-
-    # TODO: Add in an eventbridge timer to trigger the lambda.
-
-    # TODO: Add in a 2x check to make sure the queue trigger and the eb trigger are enabled. 
     
 
     # Upload RSS feeds

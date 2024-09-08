@@ -1,19 +1,22 @@
 # Current Sub-Modules
 * TODO More RSS Feed Module
 * TODO: Add in console setup python script for new project into launch.py
-
-# Modules
+* Test Creation
 * Update Lambda Layer Creation Script to be more comprehensive.
 
-# Future Modules
-* Gen AI Summarization Module
-* Other Add-on's with text classification of articles ( Sentiment Analysis, political polarity, etc... )
+# Next Modules
+* Vector Database Storage Solution w/ Pinecone.
+* Gen AI Summarization Module.
 * Duplicate Article Check Module.
-* Semantic Storage Module
+* Github Issues & Github Actions.
+
+# Future Modules
+* Other Add-on's with text classification of articles ( Sentiment Analysis, political polarity, etc... )
+* Article Clustering Module
 * API Module ( Semantic Search, Retrieval )
 * Architecture Diagram
 
-# Future Use Cases
+# Possible Use Cases/Examples
 * Betting Market Prediction
 * Financial Market Predicitions
 * News Aggregation

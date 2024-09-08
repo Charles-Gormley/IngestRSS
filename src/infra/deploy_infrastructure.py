@@ -183,9 +183,6 @@ def deploy_infrastructure():
                                   'ParameterValue': f"arn:aws:lambda:{os.getenv('AWS_REGION')}:{os.getenv('AWS_ACCOUNT_ID')}:function:{os.getenv('QUEUE_FILLER_LAMBDA_NAME')}"
                               }
                           ])
-    
-    # TODO: Figure out KMS Stuff, but for now just do it in the console. I would like to get the rest of the cloudformation working 
-    # before I start messing with KMS keys.
 
 if __name__ == "__main__":
     deploy_infrastructure()
