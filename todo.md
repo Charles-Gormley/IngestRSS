@@ -1,8 +1,13 @@
-# Current Sub-Modules
-* TODO More RSS Feed Module
-* TODO: Add in console setup python script for new project into launch.py
+# TODO Before Launch 🚀
 * Test Creation
+* Add in console setup python script for new project into launch.py
+* Better Readme.md
+* Change name
+
+# Misc TODO:
+* More RSS Feed Module - Easy
 * Update Lambda Layer Creation Script to be more comprehensive.
+
 
 # Next Modules
 * Vector Database Storage Solution w/ Pinecone.
