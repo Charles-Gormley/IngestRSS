@@ -1,4 +1,7 @@
-# IngestRSS 🗞️💦
+# 🚀IngestRSS - 🗞️💵⚖️
+
+![Header](https://cdn.midjourney.com/ce07cd64-0b3e-43f0-846e-b371a69dc816/0_0.png)
+
 
 OpenRSS is an AWS-based RSS feed processing system that automatically fetches, processes, and stores articles from specified RSS feeds.
 
