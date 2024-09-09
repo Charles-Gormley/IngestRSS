@@ -9,6 +9,8 @@ from src.utils.retry_logic import retry_with_backoff
 import time
 import sys
 from src.infra.deploy_infrastructure import get_or_create_kms_key
+from dotenv import load_dotenv
+load_dotenv()
 
 import logging
 logging.basicConfig(level=os.getenv('LOG_LEVEL', 'INFO'))
@@ -18,6 +20,7 @@ logging.basicConfig(level=os.getenv('LOG_LEVEL', 'INFO'))
 LAMBDA_NAME = os.getenv('LAMBDA_FUNCTION_NAME')
 
 ACCOUNT_NUM = os.getenv('AWS_ACCOUNT_ID')
+REGION = os.getenv("AWS_REGION")
 LAMBDA_ROLE_ARN = os.getenv("LAMBDA_ROLE_ARN")
 LAMBDA_TIMEOUT = int(os.getenv('LAMBDA_TIMEOUT'))
 LAMBDA_MEMORY = int(os.getenv('LAMBDA_MEMORY'))
@@ -63,18 +66,18 @@ def update_function_configuration(lambda_client, function_name, handler, role, t
         'Layers': layers
     }
     
-    if kms_key_id:
-        config['KMSKeyArn'] = f"arn:aws:kms:{os.environ['AWS_REGION']}:{ACCOUNT_NUM}:key/{kms_key_id}"
     
+    if kms_key_id:
+        config['KMSKeyArn'] = f"arn:aws:kms:{REGION}:{ACCOUNT_NUM}:key/{kms_key_id}"
 
-        try:
-            response = lambda_client.update_function_configuration(**config)
-            print(f"Update request sent successfully for {function_name}.")
-            
-        except ClientError as e:
-            if e.response['Error']['Code'] == 'ResourceConflictException':
-                logging.info(f"Function {function_name} is currently being updated. Retrying...")
-                raise e
+    try:
+        response = lambda_client.update_function_configuration(**config)
+        print(f"Update request sent successfully for {function_name}.")
+        
+    except ClientError as e:
+        if e.response['Error']['Code'] == 'ResourceConflictException':
+            logging.info(f"Function {function_name} is currently being updated. Retrying...")
+            raise e
 
 @retry_with_backoff()
 def configure_sqs_trigger(lambda_client, function_name, queue_arn):
@@ -100,7 +103,7 @@ def configure_sqs_trigger(lambda_client, function_name, queue_arn):
             raise e
 
 @retry_with_backoff()
-def create_function(lambda_client, function_name, runtime, role, handler, zip_file, timeout, memory, layers, kms_key_id):
+def create_function(lambda_client, function_name, runtime, role, handler, zip_file, timeout, memory, layers, kms_key_id, policy):
     config = {
         'FunctionName': function_name,
         'Runtime': runtime,
@@ -111,11 +114,19 @@ def create_function(lambda_client, function_name, runtime, role, handler, zip_fi
         'MemorySize': memory,
         'Layers': layers
     }
+    print(policy)
     
     if kms_key_id:
-        config['KMSKeyArn'] = f"arn:aws:kms:{os.environ['AWS_DEFAULT_REGION']}:{ACCOUNT_NUM}:key/{kms_key_id}"
+        config['KMSKeyArn'] = f"arn:aws:kms:{REGION}:{ACCOUNT_NUM}:key/{kms_key_id}"
     
-    return lambda_client.create_function(**config)
+    try:
+        return lambda_client.create_function(**config)
+    except ClientError as e:
+        if e.response['Error']['Code'] == 'InvalidParameterValueException':
+            print(f"Error creating function: {e}")
+            print("Ensure that the IAM role has the correct trust relationship and permissions.")
+            print("There might be a delay in role propagation. Please wait a few minutes and try again.")
+        raise
 
 def get_pillow_layer_arn():
     url = f"https://api.klayers.cloud/api/v2/p3.11/layers/latest/{os.getenv('AWS_REGION')}/json"
@@ -134,9 +145,33 @@ def get_pillow_layer_arn():
     except requests.RequestException as e:
         print(f"Error fetching Pillow layer ARN: {e}")
         return None
+    
+def get_lambda_policy():
+    policy = {
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "logs:CreateLogGroup",
+                "logs:CreateLogStream",
+                "logs:PutLogEvents"
+            ],
+            "Resource": "arn:aws:logs:*:*:*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:GetObject",
+                "s3:PutObject"
+            ],
+            "Resource": "arn:aws:s3:::your-bucket-name/*"
+        }
+    ]
+}
 
 def deploy_lambda():
-    lambda_client = boto3.client('lambda')
+    lambda_client = boto3.client('lambda', region_name=REGION)
 
     print(f"Starting deployment of Lambda function: {LAMBDA_NAME}")
     deployment_package = zip_directory('src/infra/lambdas/RSSFeedProcessorLambda/src')
@@ -182,7 +217,8 @@ def deploy_lambda():
             update_function_code(lambda_client, LAMBDA_NAME, deployment_package)
         else:
             print(f"Lambda function '{LAMBDA_NAME}' not found. Creating new function...")
-            create_function(lambda_client, LAMBDA_NAME, LAMBDA_RUNTIME, LAMBDA_ROLE_ARN, LAMBDA_HANDLER, deployment_package, LAMBDA_TIMEOUT, LAMBDA_MEMORY, layers, kms_key_id)
+            policy = get_lambda_policy()
+            create_function(lambda_client, LAMBDA_NAME, LAMBDA_RUNTIME, LAMBDA_ROLE_ARN, LAMBDA_HANDLER, deployment_package, LAMBDA_TIMEOUT, LAMBDA_MEMORY, layers, kms_key_id, policy)
 
         # Configure SQS trigger
         queue_arn = os.getenv('SQS_QUEUE_ARN')  # Make sure to set this environment variable

@@ -1,11 +1,9 @@
 # TODO Before Launch 🚀
-* Test Creation
+* Delete KMS KEY test. 
+* Test from 3rd party aws account.
 * Add in console setup python script for new project into launch.py
 * Better Readme.md
-* Update Lambda Layer Creation Script to be more comprehensive. 
-** Make a layer for every region in existance. 
-** Save this script. 
-** Update the layer references with os.getenv("AWS_REGION")
+
 
 # Misc TODO:
 * More RSS Feed Module - Easy

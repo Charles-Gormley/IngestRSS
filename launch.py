@@ -5,10 +5,6 @@ import boto3
 from dotenv import load_dotenv
 import logging
 from src.infra.lambdas.RSSQueueFiller.deploy_sqs_filler_lambda import deploy_sqs_filler
-from src.infra.deploy_infrastructure import deploy_infrastructure
-from src.infra.lambdas.RSSFeedProcessorLambda.deploy_rss_feed_lambda import deploy_lambda
-from src.infra.lambdas.lambda_utils.update_lambda_env_vars import update_env_vars
-from src.feed_management.upload_rss_feeds import upload_rss_feeds
 # Load environment variables
 load_dotenv(override=True)
 
@@ -27,7 +23,10 @@ REGION = os.getenv("AWS_REGION")
 current_dir = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(current_dir)
 
-
+from src.infra.deploy_infrastructure import deploy_infrastructure
+from src.infra.lambdas.RSSFeedProcessorLambda.deploy_rss_feed_lambda import deploy_lambda
+from src.infra.lambdas.lambda_utils.update_lambda_env_vars import update_env_vars
+from src.feed_management.upload_rss_feeds import upload_rss_feeds
 
 def main():
     # Deploy infrastructure

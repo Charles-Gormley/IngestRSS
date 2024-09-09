@@ -8,6 +8,10 @@ Parameters:
   LambdaKMSKeyArn:
     Type: String
     Description: "ARN of the KMS Key for Lambda environment variable encryption"
+  Region:
+    Type: String
+    Description: "AWS Region for deployment"
+    Default: "us-east-1"
 
 Resources:
   LambdaExecutionRole:
@@ -58,3 +62,8 @@ Outputs:
     Value: !Ref LambdaKMSKeyArn
     Export:
       Name: !Sub '${AWS::StackName}-LambdaKMSKeyArn'
+  Region:
+    Description: 'AWS Region for deployment'
+    Value: !Ref Region
+    Export:
+      Name: !Sub '${AWS::StackName}-Region'
