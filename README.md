@@ -2,11 +2,7 @@
 
 ![Header](wallpaper.png)
 
-
 OpenRSS is an AWS-based RSS feed processing system that automatically fetches, processes, and stores articles from specified RSS feeds.
-
-
-
 
 ## Customization
 

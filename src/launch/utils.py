@@ -27,13 +27,14 @@ def animate_text(text: str, emoji_list: List[str], duration: float = 0.05):
 
 def create_dropdown(options: List[str], prompt: str) -> str:
     table = Table(show_header=False, box=None)
+    console.print("\n"+prompt)
     for i, option in enumerate(options, 1):
         table.add_row(f"{i}. {option}")
     console.print(table)
     return Prompt.ask(prompt, choices=[str(i) for i in range(1, len(options) + 1)])
 
 def get_env_value(key: str, prompt: str, options: List[str] = None, advanced: bool = False) -> str:
-    if advanced and not Confirm.ask("Do you want to configure advanced settings?"):
+    if not advanced:
         return os.environ.get(key, "")
     
     if options:

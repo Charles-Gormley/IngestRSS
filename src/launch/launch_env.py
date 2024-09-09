@@ -8,15 +8,24 @@ from utils import animate_text, get_env_value, display_summary, save_env_file, e
 console = Console()
 
 def check_aws_credentials():
-    return os.environ.get('AWS_ACCESS_KEY_ID') and os.environ.get('AWS_SECRET_ACCESS_KEY')
+    try: 
+        os.environ.get('AWS_ACCESS_KEY_ID') and os.environ.get('AWS_SECRET_ACCESS_KEY')
+        
+        return True
+    except KeyError:
+        return False
 
 def check_aws_region():
-    return os.environ.get('AWS_REGION')
+    try:
+        os.environ.get('AWS_REGION')
+        return True
+    except KeyError:
+        return False
+    
 
 def main():
     animate_text("Welcome to the Ingest RSS Environment Setup!", emojis)
-    console.print(Panel(Text("Welcome to the Ingest RSS Environment Setup! 🌴🌻🦍", style="bold yellow")))
-    
+    console.print(Panel(Text("Welcome to the Ingest RSS Environment Setup! 🌴🌻🦍", style="bold green")))
     
     console.print(Panel(Text("Let's configure your environment variables", style="bold yellow")))
     
@@ -28,12 +37,14 @@ def main():
     # AWS Configuration
     
     
-    env_vars["AWS_ACCOUNT_ID"] = get_env_value("AWS_ACCOUNT_ID", "Enter AWS Account ID:")
+    env_vars["AWS_ACCOUNT_ID"] = get_env_value("AWS_ACCOUNT_ID", "Enter AWS Account ID:") # Could we grab this for the user instead.
     
     # AWS Credentials
     if not check_aws_region():
         console.print("AWS region not found in environment variables.")
         env_vars["AWS_REGION"] = get_env_value("AWS_REGION", "Enter AWS Region:", options=get_aws_regions())
+    else:
+        env_vars["AWS_REGION"] = os.environ.get('AWS_REGION')
 
     if not check_aws_credentials():
         console.print("AWS credentials not found in environment variables.")
@@ -41,6 +52,8 @@ def main():
             env_vars["AWS_ACCESS_KEY_ID"] = get_env_value("AWS_ACCESS_KEY_ID", "Enter AWS Access Key ID:")
             env_vars["AWS_SECRET_ACCESS_KEY"] = get_env_value("AWS_SECRET_ACCESS_KEY", "Enter AWS Secret Access Key:")
     else:
+        env_vars["AWS_ACCESS_KEY_ID"] = os.environ.get('AWS_ACCESS_KEY_ID')
+        env_vars["AWS_SECRET_ACCESS_KEY"] = os.environ.get('AWS_SECRET_ACCESS_KEY')
         console.print("AWS credentials found in environment variables.")
     
     # Resource Names
@@ -53,7 +66,7 @@ def main():
     env_vars["SQS_QUEUE_NAME"] = get_env_value("SQS_QUEUE_NAME", "Enter SQS Queue Name:", options=["rss-feed-queue", "custom-rss-queue"], advanced=advanced_mode)
     
     # Advanced Configuration
-    env_vars["LAMBDA_LAYER_VERSION"] = get_env_value("LAMBDA_LAYER_VERSION", "Enter Lambda Layer Version:", options=["1", "2", "3"], advanced=advanced_mode)
+    env_vars["LAMBDA_LAYER_VERSION"] = 3
     env_vars["LAMBDA_LAYER_NAME"] = f"ingest-rss-lambda-layer-{env_vars['AWS_REGION']}"
     env_vars["LAMBDA_LAYER_ARN"] = f"arn:aws:lambda:{env_vars['AWS_REGION']}:{env_vars['AWS_ACCOUNT_ID']}:layer:{env_vars['LAMBDA_LAYER_NAME']}:{env_vars['LAMBDA_LAYER_VERSION']}"
     env_vars["S3_LAYER_BUCKET_NAME"] = f"rss-feed-processor-layers-{env_vars['AWS_REGION']}"
