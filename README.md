@@ -52,7 +52,7 @@ The primary goal of IngestRSS is to provide researchers with a robust, scalable 
 
 ## 🛠️ Configuration
 
-- RSS feeds can be modified in the `rss_feeds.json` file.
+- **RSS feeds can be modified in the `rss_feeds.json` file.**
 - CloudFormation templates are located in `src/infra/cloudformation/`.
 - Lambda function code is in `src/lambda_function/src/`.
 
