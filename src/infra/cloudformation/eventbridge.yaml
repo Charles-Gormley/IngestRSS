@@ -4,14 +4,34 @@ Parameters:
     Description: ARN of the RSS Feed Processor Lambda function
 
 Resources:
+  EventBridgeScheduleRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: scheduler.amazonaws.com
+            Action: sts:AssumeRole
+      Policies:
+        - PolicyName: EventBridgeSchedulePolicy
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action: lambda:InvokeFunction
+                Resource: !Ref LambdaFunctionArn
+
   EventBridgeSchedule:
     Type: AWS::Scheduler::Schedule
     Properties:
       Name: rss-feed-processor-schedule
       Description: Runs the RSS Feed Processor Lambda function every hour
-      ScheduleExpression: rate(10 minutes)
+      ScheduleExpression: rate(5 minutes)
       FlexibleTimeWindow: 
         Mode: FLEXIBLE
         MaximumWindowInMinutes: 1
       Target:
         Arn: !Ref LambdaFunctionArn
+        RoleArn: !GetAtt EventBridgeScheduleRole.Arn
