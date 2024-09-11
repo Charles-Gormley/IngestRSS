@@ -179,7 +179,7 @@ def deploy_infrastructure():
                                 ]
                         )
     
-    deploy_cloudformation('eventbridge.yaml', 'EventBridgeSchedule',
+    deploy_cloudformation('eventbridge.yaml', 'Schedule',
                           parameters=[
                               {
                                   'ParameterKey': 'LambdaFunctionArn',

@@ -1,14 +1,13 @@
 # TODO Before Launch 🚀
-* Delete KMS KEY test. 
+* Delete KMS KEY test.             
+* Fix eventbridge issues.
+   * Create role for eventbridge scheduler
 * Fix lambda error with pacakges. 
 * Test from 3rd party aws account.
-
 
 # Misc TODO:
 * More RSS Feed Module - Easy
 * Add in console setup python script for new project into launch.py
-
-
 
 # Next Modules
 * Vector Database Storage Solution w/ Pinecone.

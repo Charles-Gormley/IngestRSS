@@ -5,11 +5,13 @@ Parameters:
 
 Resources:
   EventBridgeSchedule:
-    Type: AWS::Events::Rule
+    Type: AWS::Scheduler::Schedule
     Properties:
       Name: rss-feed-processor-schedule
       Description: Runs the RSS Feed Processor Lambda function every hour
-      ScheduleExpression: rate(1 hour) # TODO: Turn this into a variable.
-      Targets:
-        - Arn: !Ref LambdaFunctionArn
-          Id: rss-feed-processor-lambda
+      ScheduleExpression: rate(10 minutes)
+      FlexibleTimeWindow: 
+        Mode: FLEXIBLE
+        MaximumWindowInMinutes: 1
+      Target:
+        Arn: !Ref LambdaFunctionArn
