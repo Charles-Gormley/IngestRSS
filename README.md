@@ -1,4 +1,4 @@
-# 🚀✨ IngestRSS - 🗞️💵⚖️
+# 🚀 IngestRSS - 🗞️💵⚖️
 
 ![Header](wallpaper.png)
 
