@@ -1,11 +1,9 @@
 # TODO Before Launch 🚀
-* Delete KMS KEY test.             
-* Fix eventbridge issues.
-   * Create role for eventbridge scheduler
-* Fix lambda error with pacakges. 
-* Test from 3rd party aws account.
+* Fresh AWS Account Test.
 
 # Misc TODO:
+* More RSS Feeds for my own personal account.
+* Database versioning Parameter.
 * More RSS Feed Module - Easy
 * Add in console setup python script for new project into launch.py
 
