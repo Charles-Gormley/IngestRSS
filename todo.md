@@ -8,7 +8,7 @@
 * Add in console setup python script for new project into launch.py
 
 # Next Modules
-* Vector Database Storage Solution w/ Pinecone.
+* Vector Database Storage Solution w/ Pinecone. 
 * Gen AI Summarization Module.
 * Duplicate Article Check Module.
 * Github Issues & Github Actions.

@@ -1,0 +1,83 @@
+# from pinecone import Pinecone
+
+
+import os
+from dotenv import load_dotenv
+from openai import OpenAI
+
+load_dotenv()
+
+# Set up Pinecone client
+api_key = os.getenv("PINCEONE_API_KEY")
+shards = os.getenv("PINECONE_SHARDS")
+embedding_model = os.getenv("VECTOR_EMBEDDING_MODEL")
+embedding_dim = os.getenv("VECTOR_EMBEDDING_DIM")
+vector_search_metric = os.getenv("VECTOR_SEARCH_METRIC")
+index_name = os.getenv("PINECONE_DB_NAME")
+
+client = OpenAI()
+
+pc = Pinecone(api_key=api_key)
+
+def get_index():
+    if index_name not in pc.list_indexes().names():
+        pc.create_index(
+            name=index_name,
+            dimension=embedding_dim,
+            metric=vector_search_metric,
+            shards=shards
+        ) 
+
+    index = pc.Index(index_name)
+    return index
+
+def vectorize(article:str) -> list[float]:
+    response = client.embeddings.create(
+        input=article,
+        model="text-embedding-3-large"
+    )
+    
+    return response.data[0].embedding 
+    
+    
+    
+
+
+
+def upsert_vectors(index:Pinecone.Index, vectors:list[dict], namespace:str):
+    index.upsert(
+        vectors=vectors,
+        namespace=namespace
+    )
+
+
+def query_vectors(index:Pinecone.Index, namespace:str, vector:list[float], top_k:int, filter_query:dict=None):
+    
+    if len(vector) != int(embedding_dim):
+        raise ValueError("Length of vector does not match the embedding dimension")
+    
+    
+    if filter_query: 
+        query = index.query(
+            namespace=namespace,
+            vector=vector,
+            filter_query=filter_query,
+            top_k=top_k,
+            include_metadata=True
+        )
+         
+        
+    else:
+        query = index.query(
+            namespace=namespace,
+            vector=vector,
+            top_k=top_k
+        )
+    
+    return query
+
+
+if __name__ == "__main__":
+    # Create a large paragraph
+    paragraph = '''This is a test '''
+    vectorize("This is a test string")

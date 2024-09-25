@@ -16,7 +16,7 @@ echo "Python 3.12 found. Proceeding..."
 echo "Section 2: Installing Dependencies"
 
 # Install dependencies
-python3.12 -m pip install --upgrade Pillow feedfinder2==0.0.4 python-dateutil newspaper3k==0.2.8 feedparser lxml[html5lib] lxml_html_clean lxml[html_clean] -t python/
+python3.12 -m pip install --upgrade Pillow feedfinder2==0.0.4 python-dateutil newspaper3k==0.2.8 feedparser lxml[html5lib] lxml_html_clean lxml[html_clean] openai pinecone -t python/
 echo "Dependencies installed successfully."
 
 ####### Section 3: Creating ZIP File ########

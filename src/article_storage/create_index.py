@@ -6,8 +6,7 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 
-region = os.getenv("AWS_REGION")
-index_name = os.getenv("PINECONE_DB_NAME")
+
 index_name = "quickstart" # TODO: Remove this line after we are done testing with vector dbs. 
 
 if index_name not in pc.list_indexes().names():
@@ -31,6 +30,17 @@ index.upsert(
     ],
     namespace="example-namespace1"
 )
+
+index.upsert(
+    vectors=[
+        {"id": "vec2124", "values": [1.0, -2.5]},
+        {"id": "vec21214", "values": [3.0, -2.0]},
+        {"id": "vec31251", "values": [0.5, -1.5]},
+    ],
+    namespace="example-namespace2"
+)
+
+
 
 index.upsert(
     vectors=[
