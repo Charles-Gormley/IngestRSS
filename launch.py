@@ -8,7 +8,7 @@ from src.infra.lambdas.RSSQueueFiller.deploy_sqs_filler_lambda import deploy_sqs
 
 from src.utils.check_env import check_env
 
-print("🗞️💵⚖️IngestRSS⚖️💵🗞️\n".ljust(50, "-"))
+print("🗞️  💵 ⚖️  IngestRSS⚖️  💵 🗞️".center(100, "-"))
 
 load_dotenv(override=True)
 check_env()

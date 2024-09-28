@@ -46,7 +46,11 @@ def check_env() -> None:
     optional_vars = {
         "PINECONE_API_KEY": "pinecone",
         "PINECONE_DB_NAME": "pinecone",
-        "OPENAI_API_KEY": "all"
+        "OPENAI_API_KEY": "all",
+        "PINECONE_SHARDS": "pinecone",
+        "VECTOR_EMBEDDING_MODEL": "pinecone",
+        "VECTOR_EMBEDDING_DIM": "pinecone",
+        "VECTOR_SEARCH_METRIC": "pinecone"
     }
 
     missing_vars: List[str] = []
