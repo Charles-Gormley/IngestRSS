@@ -1,15 +1,22 @@
-# TODO Before Launch 🚀
-* Fresh AWS Account Test.
+# Testing🧪
+* Testing from 3rd party aws account. [ Today ]
+* Test Large Amounts of Feeds ( Decrease the cadence of ingesting. ) [ Today ]
+* Test out Vector Databases at Small Scale
+* Test out Vector Databases at Scale. 
+* Test out LLM Summarizaiton At Small Scale
+* Test out LLM Summarization At Scall
 
-# Misc TODO:
-* More RSS Feeds for my own personal account.
-* Database versioning Parameter.
-* More RSS Feed Module - Easy
-* Add in console setup python script for new project into launch.py
 
-# Next Modules
-* Vector Database Storage Solution w/ Pinecone. 
-* Gen AI Summarization Module.
+# Application Modules
+* Vector Storage
+* Vector Analysis
+* LLM Summarization
+* Semantic Understanding & Reasoning 
+* AWS Budget, Pinecone Budget, & LLM Budget
+* Integration with bumblebee
+* Visualization System ( Ingesting, Clustering, etc...) 
+
+# Misc
 * Duplicate Article Check Module.
 * Github Issues & Github Actions.
 

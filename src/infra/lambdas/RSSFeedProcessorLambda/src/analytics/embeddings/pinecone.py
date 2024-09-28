@@ -1,4 +1,4 @@
-# from pinecone import Pinecone
+from pinecone import Pinecone
 
 
 import os
@@ -38,10 +38,6 @@ def vectorize(article:str) -> list[float]:
     )
     
     return response.data[0].embedding 
-    
-    
-    
-
 
 
 def upsert_vectors(index:Pinecone.Index, vectors:list[dict], namespace:str):
@@ -56,7 +52,6 @@ def query_vectors(index:Pinecone.Index, namespace:str, vector:list[float], top_k
     if len(vector) != int(embedding_dim):
         raise ValueError("Length of vector does not match the embedding dimension")
     
-    
     if filter_query: 
         query = index.query(
             namespace=namespace,
@@ -64,8 +59,7 @@ def query_vectors(index:Pinecone.Index, namespace:str, vector:list[float], top_k
             filter_query=filter_query,
             top_k=top_k,
             include_metadata=True
-        )
-         
+        ) 
         
     else:
         query = index.query(
@@ -79,5 +73,5 @@ def query_vectors(index:Pinecone.Index, namespace:str, vector:list[float], top_k
 
 if __name__ == "__main__":
     # Create a large paragraph
-    paragraph = '''This is a test '''
+    paragraph = '''This is a test.'''
     vectorize("This is a test string")

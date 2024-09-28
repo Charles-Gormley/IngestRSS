@@ -5,9 +5,7 @@ import logging
 from random import randint
 
 # TODO: Move this article storage logic to a separate module inside of lambda. 
-from src.article_storage.initialize import get_index, upsert_vectors, query_vectors, vectorize
-
-from utils import generate_key
+from src.analytics.embeddings.pinecone import get_index, upsert_vectors, vectorize
 
 logger = logging.getLogger()
 
@@ -23,7 +21,7 @@ def save_article(article:dict, strategy:str):
     if strategy == "s3":
         s3_save_article(article)
     elif strategy == "pinecone":
-        pinecone_save_article()
+        pinecone_save_article(article)
     else:
         raise ValueError(f"Invalid storage strategy: {strategy}")
     
@@ -31,16 +29,16 @@ def save_article(article:dict, strategy:str):
 def pinecone_save_article(article:dict):
     logger.info("Saving article to Pinecone")
     index = get_index()
-    article_id = article['article_id']
-    rss_feed_id = article['rss_id']
+
+    # Expected Keys from Pinecone *MUST* include 'id' and 'values'
     article["id"] = article["article_id"]
     article["values"] = vectorize(article["content"])
     
-    namespace = f"{rss_feed_id}-{article_id}"
+    namespace = f"IngestRSS-Articles"
     
+    logger.info("Upserting article to Pinecone")
     upsert_vectors(index, [article], namespace)
-
-    logger.info(f"Saved article {article_id} to Pinecone index {index.name} with namespace {namespace}")
+    logger.info(f"Successfully upserted article w/ article-id: {article["article_id"]} to Pinecone index {index.name} with namespace {namespace}")
 
 def dynamodb_save_article(article:dict):
     pass

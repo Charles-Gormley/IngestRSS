@@ -2,4 +2,4 @@ repo_structure.txt
 .env
 /layer/python*
 *__pycache__*
-rss_feeds.json
+*feeds.json

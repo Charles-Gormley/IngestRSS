@@ -1,6 +1,6 @@
 
 
 def summarize(text:str): 
-    sub_prompt = "Summarize the follow"
+    sub_prompt = "Summarize the following passage"
     
     
