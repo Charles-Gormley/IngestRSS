@@ -73,19 +73,18 @@ def check_env() -> None:
             if value is None or value == "***" or value.strip() == "":
                 missing_optional_vars.append(var)
 
-    if missing_vars or placeholder_vars or missing_optional_vars:
+    if missing_optional_vars:
+        print("\nMissing or improperly set optional variables (based on your storage strategy):")
+        for var in missing_optional_vars:
+            print(f"- {var}")
+
+    if missing_vars or placeholder_vars:
         print("Error: Some environment variables are not properly set.")
         
         if missing_vars:
             print("\nMissing or improperly set required variables:")
             for var in missing_vars:
                 print(f"- {var}")
-        
-        if missing_optional_vars:
-            print("\nMissing or improperly set optional variables (based on your storage strategy):")
-            for var in missing_optional_vars:
-                print(f"- {var}")
-        
         
         print(f"😡👊😡Someone didn't read DIRECTIONS 😡👊😡")
         time.sleep(0.5)
