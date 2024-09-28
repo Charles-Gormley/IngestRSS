@@ -1,4 +1,5 @@
 import os
+import time
 from dotenv import load_dotenv
 from typing import List, Dict
 
@@ -85,10 +86,21 @@ def check_env() -> None:
             for var in missing_optional_vars:
                 print(f"- {var}")
         
-        print("\nPlease set these environment variables before running the script.")
+        
+        print(f"😡👊😡Someone didn't read DIRECTIONS 😡👊😡")
+        time.sleep(0.5)
+        print("That's okay.")
+        time.sleep(0.2)
+        print("I don't follow directions that much either. We're in the same boat.")
+        
+        time.sleep(0.5)
+        print("But we need to set these environment variables before running the script.")
+        
+        print("\nPlease refer to the README & template.env for additional setup instructions.")
         raise EnvironmentError("Missing or improperly set environment variables")
     else:
-        print("All required environment variables are properly set.")
+        print("Someone followed directions!🐝🐝🐝")
+        print("All required environment variables are properly set. P")
 
 # Example usage
 if __name__ == "__main__":
