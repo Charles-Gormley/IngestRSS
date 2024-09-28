@@ -95,7 +95,7 @@ def check_env() -> None:
         time.sleep(0.5)
         print("But we need to set these environment variables before running the script.")
         
-        print("\nPlease refer to the README & template.env for additional setup instructions.")
+        print("\nPlease refer to the README & template.env for additional setup instructions.".ljust(20, "--"))
         raise EnvironmentError("Missing or improperly set environment variables")
     else:
         print("Someone followed directions!🐝🐝🐝")
