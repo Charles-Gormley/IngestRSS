@@ -87,9 +87,9 @@ def check_env() -> None:
                 print(f"- {var}")
         
         print(f"😡👊😡Someone didn't read DIRECTIONS 😡👊😡")
-        time.sleep(0.5)
+        time.sleep(2)
         print("That's okay.")
-        time.sleep(0.2)
+        time.sleep(1.5)
         print("I don't follow directions that much either. We're in the same boat.")
         
         time.sleep(0.5)
