@@ -14,7 +14,13 @@ def update_env_vars(function_name):
         'S3_BUCKET_NAME': os.environ.get('S3_BUCKET_NAME'),
         'DYNAMODB_TABLE_NAME': os.environ.get('DYNAMODB_TABLE_NAME'),
         'LOG_LEVEL': os.environ.get('LOG_LEVEL', 'INFO'),
-        'STORAGE_STRATEGY': os.environ.get('STORAGE_STRATEGY')
+        'STORAGE_STRATEGY': os.environ.get('STORAGE_STRATEGY'),
+        'PINECONE_API_KEY': os.environ.get('PINECONE_API_KEY'),
+        'PINECONE_SHARDS': os.environ.get('PINECONE_SHARDS'),
+        'VECTOR_EMBEDDING_MODEL': os.environ.get('VECTOR_EMBEDDING_MODEL'),
+        'VECTOR_EMBEDDING_DIM': os.environ.get('VECTOR_EMBEDDING_DIM'),
+        'VECTOR_SEARCH_METRIC': os.environ.get('VECTOR_SEARCH_METRIC'),
+        'PINECONE_DB_NAME': os.environ.get('PINECONE_DB_NAME')
     }
     
     return lambda_client.update_function_configuration(

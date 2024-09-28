@@ -1,11 +1,7 @@
-from pinecone import Pinecone
-
-
 import os
-from dotenv import load_dotenv
-from openai import OpenAI
 
-load_dotenv()
+from pinecone import Pinecone
+from openai import OpenAI
 
 # Set up Pinecone client
 api_key = os.getenv("PINCEONE_API_KEY")

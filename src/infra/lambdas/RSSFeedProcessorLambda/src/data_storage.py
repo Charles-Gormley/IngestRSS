@@ -6,7 +6,7 @@ from random import randint
 
 # TODO: Move this article storage logic to a separate module inside of lambda. 
 # TODO: Get better at handling loading local moduels insdie of the lambdda. 
-from infra.lambdas.RSSFeedProcessorLambda.src.analytics.embeddings.vector_db import get_index, upsert_vectors, vectorize
+from analytics.embeddings.vector_db import get_index, upsert_vectors, vectorize
 
 logger = logging.getLogger()
 
