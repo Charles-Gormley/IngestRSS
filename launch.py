@@ -5,19 +5,17 @@ import boto3
 from dotenv import load_dotenv
 import logging
 from src.infra.lambdas.RSSQueueFiller.deploy_sqs_filler_lambda import deploy_sqs_filler
-# Load environment variables
+
+from src.utils.check_env import check_env
+
+
 load_dotenv(override=True)
+check_env()
 
 # Set up logging
 logging.basicConfig(level=os.getenv('LOG_LEVEL'))
 
 lambda_client = boto3.client("lambda")
-
-# Set AWS credentials from environment variables
-TABLE_NAME = os.getenv('DYNAMODB_TABLE_NAME')
-ACCOUNT_NUM = os.getenv("AWS_ACCOUNT_ID")
-SQS_QUEUE_NAME = os.getenv("SQS_QUEUE_NAME")
-REGION = os.getenv("AWS_REGION")
 
 # Add the src directory to the Python path
 current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -44,17 +42,14 @@ def main():
     update_env_vars(os.getenv("LAMBDA_FUNCTION_NAME"))
     print("Finished Environment Variable Updates")
     
-
     # Upload RSS feeds
     rss_feeds_file = os.path.join(current_dir, "rss_feeds.json")
     if os.path.exists(rss_feeds_file):
         with open(rss_feeds_file, 'r') as f:
             rss_feeds = json.load(f)
-        upload_rss_feeds(rss_feeds, TABLE_NAME)
+        upload_rss_feeds(rss_feeds, os.getenv('DYNAMODB_TABLE_NAME'))
     else:
         print(f"WARNING: {rss_feeds_file} not found. Skipping RSS feed upload.")
-
-    print("RSS Feed Processor launched successfully!")
 
     print("RSS Feed Processor launched successfully!")
 
