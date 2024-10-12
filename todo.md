@@ -35,6 +35,8 @@
 * News Aggregation
 * News Letter Tooling
 
+* Add some datasets & analysis of text data to kaggle.
+
 # Over-caffeineted Ideas ☕
 * Make it solarpunk themed.
 * Write a serverless manifesto for personal projects and where you would like to see the serverless world go.
