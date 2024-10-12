@@ -11,8 +11,7 @@ embedding_dim = os.getenv("VECTOR_EMBEDDING_DIM")
 vector_search_metric = os.getenv("VECTOR_SEARCH_METRIC")
 index_name = os.getenv("PINECONE_DB_NAME")
 
-client = OpenAI()
-
+client = OpenAI() # For Embedding Models, Not LLMs
 pc = Pinecone(api_key=api_key)
 
 def get_index():

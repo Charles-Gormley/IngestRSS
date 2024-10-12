@@ -36,7 +36,6 @@ def lambda_handler(event, context):
 
         # Process the feed
         result = extract_feed(feed)
-        print(type(result))
         logger.info("Process Feed Result Dictionary: ", result)
         last_pub_dt = result['max_date']
 

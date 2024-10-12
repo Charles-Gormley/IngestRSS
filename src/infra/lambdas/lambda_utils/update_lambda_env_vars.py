@@ -20,7 +20,8 @@ def update_env_vars(function_name):
         'VECTOR_EMBEDDING_MODEL': os.environ.get('VECTOR_EMBEDDING_MODEL'),
         'VECTOR_EMBEDDING_DIM': os.environ.get('VECTOR_EMBEDDING_DIM'),
         'VECTOR_SEARCH_METRIC': os.environ.get('VECTOR_SEARCH_METRIC'),
-        'PINECONE_DB_NAME': os.environ.get('PINECONE_DB_NAME')
+        'PINECONE_DB_NAME': os.environ.get('PINECONE_DB_NAME'),
+        'OPENAI_API_KEY': os.environ.get('OPENAI_API_KEY')
     }
     
     return lambda_client.update_function_configuration(

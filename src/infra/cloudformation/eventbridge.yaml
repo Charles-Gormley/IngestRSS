@@ -28,7 +28,7 @@ Resources:
     Properties:
       Name: rss-feed-processor-schedule
       Description: Runs the RSS Feed Processor Lambda function every hour
-      ScheduleExpression: rate(5 minutes)
+      ScheduleExpression: rate(30 minutes)
       FlexibleTimeWindow: 
         Mode: FLEXIBLE
         MaximumWindowInMinutes: 1

@@ -1,5 +1,5 @@
 # Testing🧪
-* Testing from 3rd party aws account. [ Today ]
+* Testing from 3rd party aws account. 
 * Test Large Amounts of Feeds ( Decrease the cadence of ingesting. ) [ Today ]
 * Test out Vector Databases at Small Scale
 * Test out Vector Databases at Scale. 
