@@ -7,7 +7,7 @@ from openai import OpenAI
 api_key = os.getenv("PINCEONE_API_KEY")
 shards = os.getenv("PINECONE_SHARDS")
 embedding_model = os.getenv("VECTOR_EMBEDDING_MODEL")
-embedding_dim = os.getenv("VECTOR_EMBEDDING_DIM")
+embedding_dim = int(os.getenv("VECTOR_EMBEDDING_DIM"))
 vector_search_metric = os.getenv("VECTOR_SEARCH_METRIC")
 index_name = os.getenv("PINECONE_DB_NAME")
 

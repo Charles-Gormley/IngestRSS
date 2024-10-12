@@ -1,7 +1,10 @@
 # Testing🧪
 * Testing from 3rd party aws account. 
 * Test Large Amounts of Feeds ( Decrease the cadence of ingesting. ) [ Today ]
-* Test out Vector Databases at Small Scale
+* Test out how long an S3 Full Pull will take on the
+** First Run 
+** Second Run.
+* Test out Vector Databases at Small Scale.
 * Test out Vector Databases at Scale. 
 * Test out LLM Summarizaiton At Small Scale
 * Test out LLM Summarization At Scall
@@ -13,7 +16,7 @@
 * LLM Summarization
 * Semantic Understanding & Reasoning 
 * AWS Budget, Pinecone Budget, & LLM Budget
-* Integration with bumblebee
+* Integration with bumblebee (Easily Handle standardization with embedding models & LLMs)
 * Visualization System ( Ingesting, Clustering, etc...) 
 
 # Misc
