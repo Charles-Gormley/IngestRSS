@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 from src.infra.deploy_infrastructure import deploy_cloudformation
 
 # Load environment variables
-load_dotenv()
+load_dotenv(override=True)
 
 # Set up logging
 

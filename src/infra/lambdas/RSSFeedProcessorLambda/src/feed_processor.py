@@ -43,7 +43,7 @@ def extract_feed_threading(rss: dict, output_queue, stop_thread):
         for entry in feed['entries']:
             if stop_thread.is_set():
                 break
-
+            
             pub_date = parse_pub_date(entry['published'])
             
             if pub_date > last_date:
@@ -110,11 +110,20 @@ def extract_feed(rss: dict):
         logger.error(f"Feed: {entry}")
         logger.error(f"Feed failed due to error: {e}")
 
-def parse_pub_date(date_string):
-    try:
-        return int(datetime.strptime(date_string, "%a, %d %b %Y %H:%M:%S %z").timestamp())
-    except ValueError:
+def parse_pub_date(entry:dict):
+
+    if 'published' in entry:
+        date_string = entry['published']       
+
         try:
-            return int(datetime.strptime(date_string, "%Y-%m-%dT%H:%M:%SZ").timestamp())
+            return int(datetime.strptime(date_string, "%a, %d %b %Y %H:%M:%S %z").timestamp())
         except ValueError:
-            return int(parser.parse(date_string).timestamp())
+            try:
+                return int(datetime.strptime(date_string, "%Y-%m-%dT%H:%M:%SZ").timestamp())
+            except ValueError:
+                try:
+                    return int(parser.parse(date_string).timestamp())
+                except ValueError:
+                    pass
+
+    return int(datetime.now().timestamp()) # Return current time if no date is found

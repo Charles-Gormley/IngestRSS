@@ -6,23 +6,20 @@ from src.utils.retry_logic import retry_with_backoff
 from botocore.exceptions import ClientError
 
 from dotenv import load_dotenv
-load_dotenv()
+load_dotenv(override=True)
 
-region_name = os.getenv("AWS_REGION")
-kms_client = boto3.client('kms', region_name=region_name)
+kms_client = boto3.client('kms', region_name=os.getenv("AWS_REGION"))
 stack_base = os.getenv("STACK_BASE")
 
 @retry_with_backoff()
 def deploy_cloudformation(template_file, stack_suffix, force_recreate=False, parameters=[]):
-    cf_client = boto3.client('cloudformation')
+    cf_client = boto3.client('cloudformation', region_name=os.getenv("AWS_REGION"))
     stack_name = f"{stack_base}-{stack_suffix}"
-
     
     with open(f'src/infra/cloudformation/{template_file}', 'r') as file:
         template_body = file.read()
     
     capabilities = ['CAPABILITY_NAMED_IAM']
-    
     
     try:
         if force_recreate:
@@ -70,7 +67,7 @@ def deploy_cloudformation(template_file, stack_suffix, force_recreate=False, par
     
 def get_or_create_kms_key():
     # Create a KMS client
-    kms_client = boto3.client('kms', region_name=region_name)
+    kms_client = boto3.client('kms', region_name=os.getenv("AWS_REGION"))
     tag_key = 'purpose'
     tag_value = 'You pass butter'
     description = 'KMS key for RSS Feed Processor... Oh my god'
@@ -85,7 +82,7 @@ def get_or_create_kms_key():
         for key in response['Keys']:
             try:
                 tags = kms_client.list_resource_tags(KeyId=key['KeyId'])['Tags']
-                if any(tag['TagKey'] == tag_key and tag['TagValue'] == tag_value for tag in tags):
+                if any(tag['TagKey'] == tag_key and tag['TagValue'] == tag_value for tag in tags) and any(tag['TagKey'] == 'region' and tag['TagValue'] == os.getenv("AWS_REGION") for tag in tags): # TODO: This is inefficient and should be fixed and more readable.
                     print(f"Found existing KMS key with ID: {key['KeyId']}")
                     return key['KeyId']
             except ClientError:
@@ -120,7 +117,7 @@ def get_or_create_kms_key():
             Description=description,
             KeyUsage='ENCRYPT_DECRYPT',
             Origin='AWS_KMS',
-            Tags=[{'TagKey': tag_key, 'TagValue': tag_value}],
+            Tags=[{'TagKey': tag_key, 'TagValue': tag_value}, {'TagKey': 'region', 'TagValue': os.getenv("AWS_REGION")}],
             Policy=json.dumps(key_policy)
         )
         

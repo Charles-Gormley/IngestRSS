@@ -1,13 +1,19 @@
-# Testing🧪
+# Before Public Launch
 * Testing from 3rd party aws account. 
+* Fix Issue with KMS Keys & IAM Role [ Done ]
+* Debug the Errors that are at scale.
+
 * Test Large Amounts of Feeds ( Decrease the cadence of ingesting. ) [ Today ]
-* Test out how long an S3 Full Pull will take on the
-** First Run 
+* Test out how long an S3 Full Pull will take on the full thing.
+** First Run ( ~30 Minutes)
 ** Second Run.
 * Test out Vector Databases at Small Scale.
 * Test out Vector Databases at Scale. 
 * Test out LLM Summarizaiton At Small Scale
-* Test out LLM Summarization At Scall
+* Test out LLM Summarization At Scall 
+
+* Re-enable the Scheduler
+
 
 
 # Application Modules
@@ -18,6 +24,7 @@
 * AWS Budget, Pinecone Budget, & LLM Budget
 * Integration with bumblebee (Easily Handle standardization with embedding models & LLMs)
 * Visualization System ( Ingesting, Clustering, etc...) 
+* API Infrastructure.
 
 # Misc
 * Duplicate Article Check Module.

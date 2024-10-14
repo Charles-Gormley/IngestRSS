@@ -10,7 +10,7 @@ import time
 import sys
 from src.infra.deploy_infrastructure import get_or_create_kms_key
 from dotenv import load_dotenv
-load_dotenv()
+load_dotenv(override=True)
 
 import logging
 logging.basicConfig(level=os.getenv('LOG_LEVEL', 'INFO'))
