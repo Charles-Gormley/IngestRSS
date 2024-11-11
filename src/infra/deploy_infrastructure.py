@@ -155,7 +155,13 @@ def deploy_infrastructure():
                                 'ParameterValue': os.getenv('S3_BUCKET_NAME')
                             }
                         ])
-    
+    deploy_cloudformation('s3.yaml', 'S3-zipped',
+                        parameters=[
+                            {
+                                'ParameterKey': 'BucketName',
+                                'ParameterValue': os.getenv('S3_LAMBDA_ZIPPED_BUCKET_NAME')
+                            }
+                        ])
     deploy_cloudformation('sqs.yaml', 'SQS',
                           parameters=[
                             {

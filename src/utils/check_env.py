@@ -103,7 +103,7 @@ def check_env() -> None:
         raise EnvironmentError("Missing or improperly set environment variables")
     else:
         print("Someone followed directions!🐝🐝🐝")
-        print("All required environment variables are properly set. P")
+        print("All required environment variables are properly set.")
 
 # Example usage
 if __name__ == "__main__":

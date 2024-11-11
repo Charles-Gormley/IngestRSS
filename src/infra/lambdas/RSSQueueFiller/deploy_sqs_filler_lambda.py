@@ -20,6 +20,8 @@ def zip_lambda_code():
     lambda_dir = 'src/infra/lambdas/RSSQueueFiller/lambda'
     zip_path = 'tmp/lambda_function.zip'
     
+    os.makedirs(zip_path.split("/")[0], exist_ok=True)
+    
     with zipfile.ZipFile(zip_path, 'w', zipfile.ZIP_DEFLATED) as zipf:
         for root, _, files in os.walk(lambda_dir):
             for file in files:
@@ -31,7 +33,7 @@ def zip_lambda_code():
 
 def upload_to_s3(file_path):
     s3_key = os.getenv('QUEUE_FILLER_LAMBDA_S3_KEY')
-    bucket_name = os.getenv('S3_LAYER_BUCKET_NAME')
+    bucket_name = os.getenv('S3_LAMBDA_ZIPPED_BUCKET_NAME')
     s3.upload_file(file_path, bucket_name, s3_key)
     return f's3://{bucket_name}/{s3_key}'
 
@@ -64,7 +66,7 @@ def deploy_sqs_filler():
                             },
                             {
                                 'ParameterKey': 'LambdaCodeS3Bucket',
-                                'ParameterValue': os.getenv('S3_LAYER_BUCKET_NAME')
+                                'ParameterValue': os.getenv('S3_LAMBDA_ZIPPED_BUCKET_NAME')
                             },
                             {
                                 'ParameterKey': 'LambdaCodeS3Key',
