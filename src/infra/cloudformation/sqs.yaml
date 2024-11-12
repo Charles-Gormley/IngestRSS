@@ -11,7 +11,7 @@ Resources:
     Type: AWS::SQS::Queue
     Properties:
       QueueName: !Ref SQSQueueName
-      VisibilityTimeout: 300 # Should be set to the 3rd standard deviation of your lambda runtime distribution.
+      VisibilityTimeout: 900 # Should be set to the 3rd standard deviation of your lambda runtime distribution.
       ReceiveMessageWaitTimeSeconds: 20
       RedrivePolicy:
         deadLetterTargetArn: !GetAtt RSSFeedDLQ.Arn
