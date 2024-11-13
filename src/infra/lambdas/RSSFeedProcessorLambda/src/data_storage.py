@@ -3,7 +3,7 @@ import json
 import os
 import logging
 from random import randint
-
+from datetime import datetime
 # TODO: Move this article storage logic to a separate module inside of lambda. 
 # TODO: Get better at handling loading local moduels insdie of the lambdda. 
 from analytics.embeddings.vector_db import get_index, upsert_vectors, vectorize
@@ -47,15 +47,15 @@ def dynamodb_save_article(article:dict):
 def s3_save_article(article:dict):    
     logger.info("Saving article to S3")
 
-    rss_feed_id = article['rss_id']
+    now = datetime.now()
     article_id = article['article_id']
     logger.info(f"Content ")
-    if not rss_feed_id or not article_id:
+    if not article_id:
         logger.error(f"Missing rss_id or article_id in article: {article}")
         return
 
-    file_path = f"/tmp/{rss_feed_id}-{article_id}-article.json"
-    file_key = f"articles/{rss_feed_id}/{article_id}/article.json"
+    file_path = f"/tmp/{article_id}-article.json"
+    file_key = f"{now.year}/{now.month}/{now.day}/{article_id}.json"
     
     # Save article to /tmp json file
     with open(file_path, "w") as f:
