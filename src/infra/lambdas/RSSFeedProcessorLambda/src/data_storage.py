@@ -62,8 +62,21 @@ def s3_save_article(article:dict):
         json.dump(article, f)
 
     try:
-        s3.upload_file(file_path, CONTENT_BUCKET, file_key)
-        
+        s3.upload_file(file_path, 
+                       CONTENT_BUCKET, 
+                       file_key,
+                       ExtraArgs={
+                        "Metadata": 
+                            {
+                                "rss": article.get("rss", ""),
+                                "title": article.get("title", ""),
+                                "unixTime": str(article.get("unixTime", "")),
+                                "article_id": article.get("article_id", ""),
+                                "link": article.get("link", ""),
+                                "rss_id": article.get("rss_id", "")
+                            }
+                        }
+                    )
         logger.info(f"Saved article {article_id} to S3 bucket {CONTENT_BUCKET}")
         
     except Exception as e:

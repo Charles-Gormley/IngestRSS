@@ -1,6 +1,6 @@
 # Before Public Launch
 * Rethink Partitioning Strategy [Done]
-* Implement New Partitioning Strategy. [Next]
+* Implement New Partitioning Strategy. [Done]
 - Incorporate: All the json data except for content and link. 
   Partitioning Strategy: {Year}/{Month}/{Day}/{article_id}
 * API Tool - to Pull data that you have down. 
