@@ -4,3 +4,4 @@ repo_structure.txt
 *__pycache__*
 *feeds.json
 todo.md
+*.csv

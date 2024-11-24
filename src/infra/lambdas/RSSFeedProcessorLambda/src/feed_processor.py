@@ -6,6 +6,7 @@ import threading
 import logging
 from utils import generate_key
 from article_extractor import extract_article
+from article_cleaning import clean_text
 
 logger = logging.getLogger()
 
@@ -47,7 +48,8 @@ def extract_feed_threading(rss: dict, output_queue, stop_thread):
             pub_date = parse_pub_date(entry['published'])
             
             if pub_date > last_date:
-                title, text = extract_article(entry.link) 
+                title, text = extract_article(entry.link)
+                title, text = clean_text(title), clean_text(text)
                 article = {
                     'link': entry.link,
                     'rss': feed_url,

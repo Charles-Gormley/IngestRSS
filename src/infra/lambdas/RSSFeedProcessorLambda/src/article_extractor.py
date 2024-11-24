@@ -1,6 +1,8 @@
 import newspaper
 import logging
 
+
+
 logger = logging.getLogger()
 
 def extract_article(url):
@@ -21,7 +23,8 @@ def extract_article(url):
         article.download()
         logger.debug(f"Downloaded Article {url}")
         article.parse()
-        logger.debug(f"Parsed Article {url}")
+        logger.debug(f"Parsed Article {url}")    
+        
         return article.title, article.text
     except Exception as e:
         logger.error(f"Failed to extract article {url}: {str(e)}")
