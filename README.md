@@ -62,7 +62,8 @@ The Lambda function logs its activities to CloudWatch Logs. You can monitor the 
 
 ## 🤝 Contributing
 
-We welcome contributions! Please feel free to submit a Pull Request.
+Contributions are welcome, feel free to see open issues to get started. 
+
 
 ## 📄 License
 
@@ -70,33 +71,3 @@ We welcome contributions! Please feel free to submit a Pull Request.
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 📁 Project Structure
-
-```
-CHANGELOG.md
-├── CONTRIBUTING.md
-├── README.md
-├── launch.py
-├── requirements.txt
-├── rss_feeds.json
-├── src
-│   ├── article_storage
-│   ├── feed_management
-│   ├── infra
-│   │   ├── cloudformation
-│   │   ├── lambdas
-│   │   │   ├── RSSFeedProcessorLambda
-│   │   │   ├── RSSQueueFiller
-│   │   │   └── lambda_utils
-│   ├── launch
-│   └── utils
-├── template.env
-├── tmp
-├── todo.md
-├── tree.md
-└── wallpaper.png
-```
-
-## 🙏 Acknowledgements
-
-This project is made possible thanks to the contributions of researchers and developers committed to advancing the field of media studies and social science research.

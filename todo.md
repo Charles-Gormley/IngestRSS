@@ -1,13 +1,9 @@
 # Before Public Launch
-* API Tool - to Pull data that you have down.
-    [x] Faster Batch Responses ( Parrallelization of requests. ) 
-    [x] Query API ( Technical Feasability / is S3 even good for this. ) 
 
-* Text Processings & Text Cleaning of Content during ingestion step Research [ Done ] 
-* Do this inside of the lambda code. [ Today ] 
-
-* Test out Vector Databases at Small Scale.
+* Test out Vector Databases at Small Scale. 
 * Test out Vector Databases at Scale. 
+
+* check in to ensure text cleaning processes are working. [ ]
 
 * Fix up ReadMe
 * Publish RoadMap.
