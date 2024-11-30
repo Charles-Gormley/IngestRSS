@@ -10,12 +10,6 @@ def update_env_vars(function_name):
     lambda_client = boto3.client('lambda')
 
     env_vars = {
-        # AWS Configuration
-        'AWS_REGION': os.environ.get('AWS_REGION'),
-        'AWS_ACCOUNT_ID': os.environ.get('AWS_ACCOUNT_ID'),
-        'AWS_ACCESS_KEY_ID': os.environ.get('AWS_ACCESS_KEY_ID'),
-        'AWS_SECRET_ACCESS_KEY': os.environ.get('AWS_SECRET_ACCESS_KEY'),
-        'AWS_DEFAULT_REGION': os.environ.get('AWS_DEFAULT_REGION'),
         
         # Lambda Configuration
         'LAMBDA_FUNCTION_NAME': os.environ.get('LAMBDA_FUNCTION_NAME'),
