@@ -82,7 +82,7 @@ def get_or_create_kms_key():
         for key in response['Keys']:
             try:
                 tags = kms_client.list_resource_tags(KeyId=key['KeyId'])['Tags']
-                if any(tag['TagKey'] == tag_key and tag['TagValue'] == tag_value for tag in tags) and any(tag['TagKey'] == 'region' and tag['TagValue'] == os.getenv("AWS_REGION") for tag in tags): # TODO: This is inefficient and should be fixed and more readable.
+                if any(tag['TagKey'] == tag_key and tag['TagValue'] == tag_value for tag in tags) and any(tag['TagKey'] == 'region' and tag['TagValue'] == os.getenv("AWS_REGION") for tag in tags): # FIXME: This is inefficient and should be fixed and more readable.
                     print(f"Found existing KMS key with ID: {key['KeyId']}")
                     return key['KeyId']
             except ClientError:

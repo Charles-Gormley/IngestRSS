@@ -1,17 +1,8 @@
-# Before Public Launch
+# After Public Launch
+* Monthly Kaggle Dataset Publishing.
 
-* Test out Vector Databases at Small Scale. 
+* Test out Vector Databases at Small Scale.
 * Test out Vector Databases at Scale. 
-
-* check in to ensure text cleaning processes are working. [ ]
-
-* Fix up ReadMe
-* Publish RoadMap.
-* Tips on where to gather RSS Feeds. 
-* Public Launch Posts
-    * Reddit
-    * Twitter
-    * Kaggle
 
 * Protocol for annotating data. 
     * Promotional Material 

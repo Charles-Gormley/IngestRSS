@@ -4,8 +4,7 @@ import os
 import logging
 from random import randint
 from datetime import datetime
-# TODO: Move this article storage logic to a separate module inside of lambda. 
-# TODO: Get better at handling loading local moduels insdie of the lambdda. 
+
 from analytics.embeddings.vector_db import get_index, upsert_vectors, vectorize
 
 logger = logging.getLogger()
@@ -35,10 +34,11 @@ def pinecone_save_article(article:dict):
     article["id"] = article["article_id"]
     article["values"] = vectorize(article["content"])
     
-    namespace = f"IngestRSS-Articles"
+    
+    namespace = os.getenv('PINECONE_NAMESPACE')
     
     logger.info("Upserting article to Pinecone")
-    upsert_vectors(index, [article], namespace)
+    upsert_vectors(index, [article], namespace) 
     logger.info(f"Successfully upserted article w/ article-id: {article["article_id"]} to Pinecone index {index.name} with namespace {namespace}")
 
 def dynamodb_save_article(article:dict):

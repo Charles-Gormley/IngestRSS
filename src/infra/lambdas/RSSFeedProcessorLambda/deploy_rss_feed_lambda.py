@@ -128,8 +128,6 @@ def create_function(lambda_client, function_name, runtime, role, handler, zip_fi
         raise
 
 def get_pillow_layer_arn():
-
-    
     url = f"https://api.klayers.cloud/api/v2/p{os.getenv('PYTHON_VERSION')}/layers/latest/{os.getenv('AWS_REGION')}/json"
     try:
         response = requests.get(url)

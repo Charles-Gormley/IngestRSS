@@ -29,20 +29,19 @@ def get_index():
 def vectorize(article:str) -> list[float]:
     response = client.embeddings.create(
         input=article,
-        model="text-embedding-3-large"
+        model=os.getenv('OPENAI_EMBEDDING_MODEL') 
     )
     
     return response.data[0].embedding 
 
 
-def upsert_vectors(index:Pinecone.Index, vectors:list[dict], namespace:str):
+def upsert_vectors(index:Pinecone.Index, vectors:list[dict], namespace:str): # [ ] Check if the data is being upserted. 
     index.upsert(
         vectors=vectors,
         namespace=namespace
     )
 
-
-def query_vectors(index:Pinecone.Index, namespace:str, vector:list[float], top_k:int, filter_query:dict=None):
+def query_vectors(index:Pinecone.Index, namespace:str, vector:list[float], top_k:int, filter_query:dict=None): # [ ]: Make sure this is working. 
     
     if len(vector) != int(embedding_dim):
         raise ValueError("Length of vector does not match the embedding dimension")
