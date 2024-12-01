@@ -65,7 +65,8 @@ def update_env_vars(function_name):
         'VECTOR_SEARCH_METRIC': os.environ.get('VECTOR_SEARCH_METRIC'),
         
         # OpenAI Configuration
-        'OPENAI_API_KEY': os.environ.get('OPENAI_API_KEY')
+        'OPENAI_API_KEY': os.environ.get('OPENAI_API_KEY'),
+        "OPENAI_EMBEDDING_MODEL": os.environ.get('OPENAI_EMBEDDING_MODEL'),
     }
     
     return lambda_client.update_function_configuration(

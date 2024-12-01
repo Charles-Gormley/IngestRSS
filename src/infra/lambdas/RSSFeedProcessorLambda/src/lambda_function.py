@@ -29,8 +29,6 @@ def lambda_handler(event, context):
             feed = event["Records"][0]["body"]
             logger.info(f"Received message from SQS: {feed}")
             feed = json.loads(feed)
-            
-            
         
         receipt_handle = event["Records"][0]['receiptHandle']
 

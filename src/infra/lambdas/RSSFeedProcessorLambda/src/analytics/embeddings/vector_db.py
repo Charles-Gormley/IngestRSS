@@ -24,8 +24,8 @@ def get_index():
 
 def vectorize(article:str) -> list[float]:
     response = client.embeddings.create(
-        input=article,
-        model=os.getenv('OPENAI_EMBEDDING_MODEL', 'text') 
+        input=article, # FIXME: This fails when article is something else, find what the 'something else' is and implement fix.
+        model=os.getenv('OPENAI_EMBEDDING_MODEL', 'text-') 
     )
     
     return response.data[0].embedding 

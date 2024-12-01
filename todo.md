@@ -4,7 +4,9 @@
 * Vector Database Initialization at earlier phase. [ Done ]
 * Test out Vector Databases at Small Scale. 
     * [ ] Testing 
-    * [ ] Fix OpenAI Error.
+        * [x] Fix OpenAI Error.
+        * [x] Fix Pinecone Error
+        * [ ] Fix input error.
     * [ ] Let it run for a day
 * Test out Vector Databases at Scale. 
 

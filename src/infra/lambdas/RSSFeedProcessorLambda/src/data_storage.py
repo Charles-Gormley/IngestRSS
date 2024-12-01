@@ -29,16 +29,21 @@ def save_article(article:dict, strategy:str):
 def pinecone_save_article(article:dict):
     logger.info("Saving article to Pinecone")
     index = get_index()
+    
 
     # Expected Keys from Pinecone *MUST* include 'id' and 'values'
-    article["id"] = article["article_id"]
-    article["values"] = vectorize(article["content"])
+    data = dict()
+    logging.info(f"Article ID into Pinecone")
+    data["id"] = article["article_id"]
+    logging.info(f"Article content into Pinecone")
+    data["values"] = vectorize(article=article["content"])
+    
     
     namespace = os.getenv('PINECONE_NAMESPACE')
     
     logger.info("Upserting article to Pinecone")
-    upsert_vectors(index, [article], namespace) 
-    logger.info(f"Successfully upserted article w/ article-id: {article["article_id"]} to Pinecone index {index.name} with namespace {namespace}")
+    upsert_vectors(index, [data], namespace) 
+    logger.info(f"Successfully upserted article w/ article-id: {article["article_id"]} to Pinecone with namespace {namespace}")
 
 def dynamodb_save_article(article:dict):
     pass

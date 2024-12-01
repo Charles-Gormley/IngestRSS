@@ -207,7 +207,7 @@ def deploy_infrastructure():
                 metric=vector_search_metric,
                 spec = ServerlessSpec(
                     cloud="aws",
-                    region=os.getenv("AWS_REGION"),
+                    region="us-east-1",
                 ),
             )
         
