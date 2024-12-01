@@ -4,6 +4,10 @@ import sys
 import json
 from src.utils.retry_logic import retry_with_backoff
 from botocore.exceptions import ClientError
+from pinecone import Pinecone
+from pinecone import ServerlessSpec
+
+
 
 from dotenv import load_dotenv
 load_dotenv(override=True)
@@ -189,6 +193,24 @@ def deploy_infrastructure():
                                   'ParameterValue': f"arn:aws:lambda:{os.getenv('AWS_REGION')}:{os.getenv('AWS_ACCOUNT_ID')}:function:{os.getenv('QUEUE_FILLER_LAMBDA_NAME')}"
                               }
                           ])
+    
+    if os.getenv("STORAGE_STRATEGY") == 'pinecone':
+        pc = Pinecone(api_key=os.getenv("PINECONE_API_KEY"))
+        index_name = os.getenv("PINECONE_DB_NAME")
+        embedding_dim = os.getenv("VECTOR_EMBEDDING_DIM")
+        vector_search_metric = os.getenv("VECTOR_SEARCH_METRIC")
+        
+        if index_name not in pc.list_indexes().names():
+            pc.create_index(
+                name=index_name,
+                dimension=int(embedding_dim),
+                metric=vector_search_metric,
+                spec = ServerlessSpec(
+                    cloud="aws",
+                    region=os.getenv("AWS_REGION"),
+                ),
+            )
+        
 
 if __name__ == "__main__":
     deploy_infrastructure()

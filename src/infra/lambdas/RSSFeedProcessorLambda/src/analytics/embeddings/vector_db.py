@@ -1,13 +1,14 @@
 import os
 
 from pinecone import Pinecone
+
 from openai import OpenAI
 
 # Set up Pinecone client
 api_key = os.getenv("PINCEONE_API_KEY")
 shards = os.getenv("PINECONE_SHARDS")
 embedding_model = os.getenv("VECTOR_EMBEDDING_MODEL")
-embedding_dim = int(os.getenv("VECTOR_EMBEDDING_DIM"))
+embedding_dim = os.getenv("VECTOR_EMBEDDING_DIM")
 vector_search_metric = os.getenv("VECTOR_SEARCH_METRIC")
 index_name = os.getenv("PINECONE_DB_NAME")
 
@@ -16,12 +17,7 @@ pc = Pinecone(api_key=api_key)
 
 def get_index():
     if index_name not in pc.list_indexes().names():
-        pc.create_index(
-            name=index_name,
-            dimension=embedding_dim,
-            metric=vector_search_metric,
-            shards=shards
-        ) 
+        return KeyError(f"Index {index_name} not found")
 
     index = pc.Index(index_name)
     return index
@@ -29,7 +25,7 @@ def get_index():
 def vectorize(article:str) -> list[float]:
     response = client.embeddings.create(
         input=article,
-        model=os.getenv('OPENAI_EMBEDDING_MODEL') 
+        model=os.getenv('OPENAI_EMBEDDING_MODEL', 'text') 
     )
     
     return response.data[0].embedding 

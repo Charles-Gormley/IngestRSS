@@ -5,3 +5,4 @@ constructs==10.2.69
 # Optional, yet necessary for the Pinecone SDK functionality.
 pinecone
 openai
+tqdm

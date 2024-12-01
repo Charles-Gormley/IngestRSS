@@ -34,7 +34,6 @@ def pinecone_save_article(article:dict):
     article["id"] = article["article_id"]
     article["values"] = vectorize(article["content"])
     
-    
     namespace = os.getenv('PINECONE_NAMESPACE')
     
     logger.info("Upserting article to Pinecone")

@@ -1,9 +1,15 @@
 # After Public Launch
 * Monthly Kaggle Dataset Publishing.
 
-* Test out Vector Databases at Small Scale.
+* Vector Database Initialization at earlier phase. [ Done ]
+* Test out Vector Databases at Small Scale. 
+    * [ ] Testing 
+    * [ ] Fix OpenAI Error.
+    * [ ] Let it run for a day
 * Test out Vector Databases at Scale. 
 
+
+* Monthly ingestion job
 * Protocol for annotating data. 
     * Promotional Material 
     * Stuff that is not news

@@ -7,6 +7,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timezone
 import logging
 from string import Template
+from tqdm import tqdm
 
 class S3BatchDownloader:
     """Class for batch downloading RSS articles from S3"""
@@ -79,30 +80,32 @@ class S3BatchDownloader:
             Path to the saved file.
         """
         self.logger.info(f"Starting batch download to {output_path}")
-        
+
         # Convert date strings to UTC datetime
         start_ts = datetime.strptime(start_date, '%Y-%m-%d').replace(tzinfo=timezone.utc) if start_date else None
         end_ts = datetime.strptime(end_date, '%Y-%m-%d').replace(tzinfo=timezone.utc) if end_date else None
-        
+
         # List and filter objects
         objects = self._list_objects()
-        
+
         if start_ts or end_ts:
             objects = [
                 obj for obj in objects
                 if self._is_in_date_range(obj['LastModified'], start_ts, end_ts)
             ]
         self.logger.info(f"Found {len(objects)} objects to process")
-        
+        print(f"Found {len(objects)} objects to process")
+
         # Download and merge data
         all_data = []
-        with ThreadPoolExecutor(max_workers=self.config['max_workers']) as executor:
+        with ThreadPoolExecutor(max_workers=self.config['max_workers']) as executor, tqdm(total=len(objects), unit="object") as progress_bar:
             future_to_obj = {executor.submit(self._download_object, obj): obj for obj in objects}
             for future in as_completed(future_to_obj):
                 result = future.result()
                 if result is not None:
                     all_data.extend(result if isinstance(result, list) else [result])
-        
+                progress_bar.update(1)
+
         # Save to file
         self._save_to_file(all_data, output_path, file_format)
         self.logger.info(f"Successfully downloaded {len(all_data)} articles to {output_path}")

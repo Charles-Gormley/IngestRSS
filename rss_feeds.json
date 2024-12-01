@@ -93,5 +93,910 @@
       "u": "https://www.aspireiq.com/blog/rss.xml",
       "dt": 1699830841,
       "update": 1
+  },
+  {
+      "u": "https://theinfluencermarketingfactory.com/blogs/influencer-marketing-tips.atom",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.forbes.com/personal-brands/feed/",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.forbes.com/event-hosting/feed/",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://cmxhub.com/feed/",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.thepodcasthost.com/feed/podcast/",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://podcastmovementsessions.libsyn.com/rss",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://podcraft.libsyn.com/rss",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "http://feeds.feedburner.com/streamingmedia/TV",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://livestream.com/blog/feed",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.ecommercetimes.com/perl/syndication/rssfull.pl",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.causevox.com/blog/feed/",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://hbr.org/rss/harvard-business-review",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.fastcompany.com/feed/rss",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.thedrum.com/rss/news.xml",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://crisis-response.com/Articles/index.php/rss-feeds",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://prcg.com/feed/",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.odwyerpr.com/rss-feed.xml",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.prweek.com/uk/rss/news",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "http://feeds.feedburner.com/clickboothblog",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://feeds.feedburner.com/avantlinkblog",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.slickdeals.net/feeds/affiliate/",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://neoreach.com/blog/feed/",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://onalytica.com/blog/feed/",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.braginskyassociates.com/blog-feed.xml",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.sociallyawareblog.com/feed/",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.mediapost.com/rss/news/",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.nikonusa.com/en/learn-and-explore/index.page",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://500px.com/blog/feed",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.modernretail.co.uk/category/industry/influencer-marketing/feed/",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.six-spoke.com/news-feed.xml",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://izea.com/blogs/feeds/",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.socialchain.com/blog/rss.xml",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.lumanu.com/feed",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://later.com/blog/feed/",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.hopperhq.com/blog/feed/",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://fohr.co/rss.xml",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.law360.com/rss/SCOTUS/all",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://feeds.washingtonpost.com/rss/politics/supreme-court",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://supreme.justia.com/supreme-court-rss/",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.law.cornell.edu/supct/rss/supct_recent.xml",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://law.justia.com/feeds/categories/criminal-law.xml",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.abajournal.com/topics/criminal-justice-law/feed",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.lexology.com/feed/all/Civil%20Procedure",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://law.justia.com/feeds/categories/civil-law.xml",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.law360.com/rss/civil/articles",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.abajournal.com/topics/civil-procedure/feed",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://abovethelaw.com/category/litigation/feed/",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.jdsupra.com/rss/feed?tags=civil-litigation",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://law.justia.com/feeds/categories/corporate-law.xml",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.abajournal.com/topics/corporate-law/feed",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.law360.com/rss/corporate/articles",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.jdsupra.com/rss/feed?tags=corporate-law",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://feeds.feedburner.com/FindLawCorporateCounselNews",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://law.justia.com/feeds/categories/intellectual-property-law.xml",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.abajournal.com/topics/intellectual+property+law/feed",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.ipprotheinternet.com/RSS",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.jamsadr.com/rss.aspx",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.cpradr.org/news-publications/articles/rss",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.mediation.com/rss",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.cedr.com/newsandevents/feed/",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://healthpolicy.usc.edu/feed/",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.fda.gov/about-fda/rss-feeds-fda",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.aha.org/rss",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.beckershospitalreview.com/feeds/rss-articles.xml",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.securityweek.com/rss-feeds",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.cnet.com/rss/news/security/",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.law.ucla.edu/centers/social-policy/education-policy/news-and-events/rss-feeds",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.brookings.edu/feed/?type=content&cat=167",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.chalkbeat.org/feeds/",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.insidehighered.com/rss/news",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://opil.ouplaw.com/search-result?siteToSearch=OCO&searchType=advanced&pageSize=10&sort=relevance&pageSize=10&sort=date-desc&q=*&fq=contentType:BookItem+OR+contentType:ChapterItem+OR+contentType:JournalItem+OR+contentType:ReferenceItem&fq=subject_Law:Constitutional+and+administrative+law&fl=title%2Cabstract%2CbodyText%2CbookTitle%2CjournalTitle%2Cauthor%2CpublisherName%2CpublicationDate%2CpublicationDateDisplay%2Cisbn%2Cdoi%2Cid%2Csubjects%2CcontentTypes%2CpeerReviewed%2CopenAccess%2Curl%2CthumbnailUrl%2CpdfUrl%2CxmlUrl%2ChtmlUrl%2CdocumentType%2Clanguage%2CaccessProviderName%2CaccessProviderDisplay&start=0",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.yalejreg.com/feed/",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.abajournal.com/topic/legal+ethics/rss",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://georgetownlawjournal.org/feeds/journal-legal-ethics",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.lexology.com/gatewayrss/22/Feed.aspx?g=9f7d415b-070a-4c47-a086-c8b7dbb08d06",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.americanbar.org/content/dam/aba/publications/professional_lawyer/ProfLawyer_Journal_Fall_2019.rss",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://hq.ssrn.com/jourInvite.cfm?link=Legal-Writing-eJournal",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://writingcenterblog.unc.edu/feed/",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.legalbluebook.com/blog/rss.xml",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.scribes.org/legal-writing-news?format=RSS",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://reason.com/volokh-conspiracy/feed/?cat=legal-writing",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.uscourts.gov/news/rss-feed",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.brennancenter.org/topics/judicial-selection/feed",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.acslaw.org/our-work/resources/feed/?category=judicial-nominations",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.pewresearch.org/topics/u-s-politics-policy/feed/",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.abajournal.com/feed/",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.courtlistener.com/docket/rss/ctapp/",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.law.upenn.edu/live/rss/news.php",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.americanbar.org/groups/legal_education/resources/legal-education-news-feed/",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://taxprof.typepad.com/taxprof_blog/legal_education/index.xml",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.americanbar.org/groups/public_services/lawyer-referral/public-interest-connections/",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.law.com/rss/nlj/",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.law360.com/rss/legalindustry",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.washingtonpost.com/news/volokh-conspiracy/feed/",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.brennancenter.org/topics/public-interest-law/feed",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.law.com/rss/technology/",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.abajournal.com/topic/law+firm+management/feed",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.lawtechnologytoday.org/feed/",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.abajournal.com/topic/pro_bono/rss",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.legalaidnyc.org/feed/",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.floridabar.org/publications/news/feed/",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://immigrantjustice.org/rss.xml",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.americanbar.org/groups/legal_services/publications/solo_small_firm_resources/solo-in-a-box-rss/",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.nlada.org/rss.xml",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.probono.net/news/rss/",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.nalp.org/rss/news.rss",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.nita.org/feed/",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "http://www.federalevidence.com/rss.xml",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://legaltalknetwork.com/feed/podcast/in-the-mind-of-a-trial-lawyer/",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.courtroomview.com/category/news/feed/",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.lawfareblog.com/topic/international-law/feed",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.ibanet.org/RSS/IBA-RSS-News.aspx",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.asil.org/resources/feed",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.icc-cpi.int/NewsFeed.aspx",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.law.georgetown.edu/international-law-journal/feed/",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.ejil.org/rss_feeds.html",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.bloomberg.com/businessweekrss",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.economist.com/sections/business-finance/rss.xml",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.industryweek.com/rss.xml",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.scdigest.com/rssfeeds.xml",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.healthcarefinancenews.com/rss.xml",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.ehstoday.com/rss.xml",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.bloomberg.com/markets/sitemap.xml",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.fool.com/feeds/all.rss",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.bea.gov/rss.xml",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.worldbank.org/en/news/all/rss",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://unece.org/info/news/news/rss.xml",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.census.gov/economic-indicators/rss.xml",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://venturebeat.com/category/startups/feed/",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://hbr.org/rss/topic/entrepreneurship",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://moz.com/blog/feed",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://salesloft.com/resources/feed/",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.bdc.ca/en/articles-tools/entrepreneur-toolkit/business-strategy-planning/marketing/pages/default.aspx?rss=true",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.crmbuyer.com/perl/syndication/rssfull.pl",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.copper.com/blog/feed/",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://blog.hubspot.com/crm/rss.xml",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "http://www.scdigest.com/rssfeeds.xml",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.manufacturing.net/rss/all",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.industryweek.com/rss/allarticles.xml",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.hrmagazine.co.uk/rss",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://hbr.org/feeds/topics/organizational-culture",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://cultureiq.com/feed/",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://officevibe.com/blog/feed",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://hbr.org/feeds/topics/leadership",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.mckinsey.com/rss/insights/leadership",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.strategy-business.com/rss/stratcon_all",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.gsb.stanford.edu/sites/default/files/feeds/cgri.xml",
+      "dt": 1699830841,
+      "update": 0
+  },
+  {
+      "u": "https://www.navexglobal.com/en-us/company/blog/ethicscompliance/feed",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.accountingtoday.com/rss",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.journalofaccountancy.com/rss.xml",
+      "dt": 1699830841,
+      "update": 0
+  },
+  {
+      "u": "https://www.wsj.com/news/cfo-journal/rss",
+      "dt": 1699830841,
+      "update": 0
+  },
+  {
+      "u": "https://www.bloomberg.com/professional/accounting-news/",
+      "dt": 1699830841,
+      "update": 0
+  },
+  {
+      "u": "https://www.fm-magazine.com/news/rss.html",
+      "dt": 1699830841,
+      "update": 0
+  },
+  {
+      "u": "https://www.accountingweb.com/rss",
+      "dt": 1699830841,
+      "update": 0
+  },
+  {
+      "u": "https://www.risk.net/rss",
+      "dt": 1699830841,
+      "update": 0
+  },
+  {
+      "u": "https://www.sec.gov/rss/pressrel.rss",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.riskmanagementmonitor.com/feed/",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.isaca.org/resources/news-and-trends/isaca-now-blog/risk-management",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.mergermarket.com/rss/",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.bloomberg.com/professional/ma-news/",
+      "dt": 1699830841,
+      "update": 0
+  },
+  {
+      "u": "https://pitchbook.com/news/rss",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.wsj.com/news/business/deals",
+      "dt": 1699830841,
+      "update": 0
+  },
+  {
+      "u": "https://www.forbes.com/mergers-acquisitions/feed/",
+      "dt": 1699830841,
+      "update": 0
+  },
+  {
+      "u": "https://www.accountingtoday.com/tag/mergers-acquisitions",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.crowdfundinsider.com/category/equity-crowdfunding/feed/",
+      "dt": 1699830841,
+      "update": 0
+  },
+  {
+      "u": "https://www.crowdfundinsider.com/category/p2p-lending/feed/",
+      "dt": 1699830841,
+      "update": 0
+  },
+  {
+      "u": "https://www.fundable.com/blog/rss",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.startengine.com/blog/rss.xml",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.bloomberg.com/topics/international-trade/rss",
+      "dt": 1699830841,
+      "update": 0
+  },
+  {
+      "u": "https://www.wto.org/rss/news_rss_e.xml",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://unctad.org/news/rss",
+      "dt": 1699830841,
+      "update": 0
+  },
+  {
+      "u": "https://www.forbes.com/international-business/feed/",
+      "dt": 1699830841,
+      "update": 0
+  },
+  {
+      "u": "https://www.sba.gov/rss/news.xml",
+      "dt": 1699830841,
+      "update": 0
+  },
+  {
+      "u": "https://quickbooks.intuit.com/r/feed/",
+      "dt": 1699830841,
+      "update": 0
+  },
+  {
+      "u": "https://www.score.org/blog/feed",
+      "dt": 1699830841,
+      "update": 0
+  },
+  {
+      "u": "https://www.americanbar.org/content/dam/aba/rss/news/abanews.xml",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://www.natlawreview.com/rss-feed.xml",
+      "dt": 1699830841,
+      "update": 0
+  },
+  {
+      "u": "https://rss.nytimes.com/services/xml/rss/nyt/BusinessLaw.xml",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://angel.co/blog.rss",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://hbr.org/technology/rss.xml",
+      "dt": 1699830841,
+      "update": 1
+  },
+  {
+      "u": "https://sloanreview.mit.edu/topics/innovation/feed/",
+      "dt": 1699830841,
+      "update": 0
   }
 ]
