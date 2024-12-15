@@ -1,8 +1,12 @@
 import os
 
 from pinecone import Pinecone
-
 from openai import OpenAI
+
+from utils import setup_logging
+
+logger = setup_logging()
+
 
 # Set up Pinecone client
 api_key = os.getenv("PINCEONE_API_KEY")
@@ -32,10 +36,11 @@ def vectorize(article:str) -> list[float]:
 
 
 def upsert_vectors(index:Pinecone.Index, vectors:list[dict], namespace:str): # [ ] Check if the data is being upserted. 
-    index.upsert(
+    response = index.upsert(
         vectors=vectors,
         namespace=namespace
     )
+    logger.info(f"Upserted vectors Response : {response}")
 
 def query_vectors(index:Pinecone.Index, namespace:str, vector:list[float], top_k:int, filter_query:dict=None): # [ ]: Make sure this is working. 
     

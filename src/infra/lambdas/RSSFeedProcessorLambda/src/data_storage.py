@@ -38,11 +38,13 @@ def pinecone_save_article(article:dict):
     logging.info(f"Article content into Pinecone")
     data["values"] = vectorize(article=article["content"])
     
+    data = list(data)
+    
     
     namespace = os.getenv('PINECONE_NAMESPACE')
     
     logger.info("Upserting article to Pinecone")
-    upsert_vectors(index, [data], namespace) 
+    upsert_vectors(index, data, namespace) 
     logger.info(f"Successfully upserted article w/ article-id: {article["article_id"]} to Pinecone with namespace {namespace}")
 
 def dynamodb_save_article(article:dict):
