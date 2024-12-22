@@ -36,7 +36,8 @@ def upload_rss_feeds(rss_feeds, table_name):
         if 'Item' not in response:
             # Item doesn't exist, insert new item
             item = {partition_key: feed['u'], 'dt': 0}
-            item.update(feed)
+            feed['dt'] = int(feed['dt'])
+            item.update()
             
             try:
                 table.put_item(Item=item)

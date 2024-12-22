@@ -31,17 +31,20 @@ def vectorize(article:str) -> list[float]:
         input=article, # FIXME: This fails when article is something else, find what the 'something else' is and implement fix.
         model=os.getenv('OPENAI_EMBEDDING_MODEL', 'text-') 
     )
-    
+
     return response.data[0].embedding 
 
 
-def upsert_vectors(index:Pinecone.Index, vectors:list[dict], namespace:str): # [ ] Check if the data is being upserted. 
+def upsert_vectors(index:Pinecone.Index, data:list[dict], namespace:str): # [ ] Check if the data is being upserted. 
     response = index.upsert(
-        vectors=vectors,
+        vectors=data,
         namespace=namespace
     )
-    logger.info(f"Upserted vectors Response : {response}")
-
+    logger.info(f'Upserted Vector Response : {response.to_dict()}')
+    logger.info(f'Upserted Vector Length : {len(data[0]["values"])}')
+    logger.info(f'Upserted Vector Response Type : {type(response)}')
+    logger.info(f'Upserted Vector Response - status : {response.status_code}')
+    
 def query_vectors(index:Pinecone.Index, namespace:str, vector:list[float], top_k:int, filter_query:dict=None): # [ ]: Make sure this is working. 
     
     if len(vector) != int(embedding_dim):

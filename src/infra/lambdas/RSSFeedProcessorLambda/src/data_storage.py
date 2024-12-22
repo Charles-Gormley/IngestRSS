@@ -22,6 +22,9 @@ def save_article(article:dict, strategy:str):
         s3_save_article(article)
     elif strategy == "pinecone":
         pinecone_save_article(article)
+    elif strategy == 'both':
+        pinecone_save_article(article)
+        s3_save_article(article)
     else:
         raise ValueError(f"Invalid storage strategy: {strategy}")
     
@@ -29,7 +32,6 @@ def save_article(article:dict, strategy:str):
 def pinecone_save_article(article:dict):
     logger.info("Saving article to Pinecone")
     index = get_index()
-    
 
     # Expected Keys from Pinecone *MUST* include 'id' and 'values'
     data = dict()
@@ -38,14 +40,16 @@ def pinecone_save_article(article:dict):
     logging.info(f"Article content into Pinecone")
     data["values"] = vectorize(article=article["content"])
     
-    data = list(data)
+    print(type(data["values"]))
+    print(data["id"])
+    
+    data = [data]
     
     
     namespace = os.getenv('PINECONE_NAMESPACE')
     
     logger.info("Upserting article to Pinecone")
     upsert_vectors(index, data, namespace) 
-    logger.info(f"Successfully upserted article w/ article-id: {article["article_id"]} to Pinecone with namespace {namespace}")
 
 def dynamodb_save_article(article:dict):
     pass
